@@ -22,7 +22,7 @@ export default function RecordEmbed(props: Props) {
   const router = useRouter();
 
   return (
-    <article className="flex flex-col rounded-xl">
+    <article className="flex flex-col rounded-xl mx-2">
       {media && <PostEmbed content={media} depth={depth + 1} />}
       {isViewable && depth < 1 && (
         <div
@@ -61,7 +61,7 @@ export default function RecordEmbed(props: Props) {
               <PostText record={record.value} truncate={true} />
             </div>
             {record.embeds && record.embeds.length > 0 && (
-              <PostEmbed content={record.embeds[0]} depth={depth + 1} />
+              <div className="border"><PostEmbed content={record.embeds[0]} depth={depth + 1} /></div>
             )}
           </div>
         </div>
