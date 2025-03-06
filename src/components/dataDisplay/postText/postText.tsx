@@ -118,7 +118,7 @@ export default function PostText(props: Props) {
   return (
     <div
       dir="auto"
-      className={`text-skin-base whitespace-pre-wrap [overflow-wrap:anywhere] ${
+      className={`inline text-skin-base whitespace-pre-wrap [overflow-wrap:anywhere] ${
         truncate && "line-clamp-6"
       } ${mode === "feed" ? "text-base leading-5" : "text-lg leading-6"}`}
     >

@@ -27,14 +27,14 @@ export default function Reason(props: Props) {
           onClick={(e) => e.stopPropagation()}
           className="max-w-fit"
         >
-          <div className="text-skin-secondary hover:text-skin-tertiary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
+          <div className="px-3 text-skin-secondary hover:text-skin-tertiary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
             <BiRepost />
             <small>{reason.by.displayName || reason.by.handle} reposted</small>
           </div>
         </Link>
       )}
       {isPin && (
-        <div className="max-w-fit text-skin-secondary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
+        <div className="px-3 max-w-fit text-skin-secondary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
           <BiSolidPin />
           <small>Pinned post</small>
         </div>

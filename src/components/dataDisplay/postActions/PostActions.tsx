@@ -252,7 +252,27 @@ export default function PostActions(props: Props) {
   }
 
   return (
-    <div className="flex justify-between">
+    <div className="flex gap-2">
+      <Button
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleLike.mutate();
+        }}
+        className={`font-medium ${
+          liked
+            ? "text-skin-icon-like"
+            : "text-skin-icon-muted hover:text-skin-icon-like"
+        }
+          `}
+      >
+        {liked ? (
+          <BiSolidHeart className="" />
+        ) : (
+          <BiHeart className="" />
+        )}
+        <span className="hidden">{likeCount > 0 && abbreviateNumber(likeCount)}</span>
+      </Button>
+
       <Button
         disabled={post.viewer?.replyDisabled}
         onClick={(e) => {
@@ -270,10 +290,10 @@ export default function PostActions(props: Props) {
             },
           });
         }}
-        className="hover:text-primary text-skin-icon-muted text-sm font-medium"
+        className="hover:text-primary text-skin-icon-muted font-medium"
       >
-        <BiMessageRounded className="text-lg" />
-        {post.replyCount ? abbreviateNumber(post.replyCount) : null}
+        <BiMessageRounded className="" />
+        <span className="hidden">{post.replyCount ? abbreviateNumber(post.replyCount) : null}</span>
       </Button>
 
       <Dropdown>
@@ -282,7 +302,7 @@ export default function PostActions(props: Props) {
             onClick={(e) => {
               e.stopPropagation();
             }}
-            className={`text-sm font-medium
+            className={`font-medium
               ${
                 reposted
                   ? "text-skin-icon-repost"
@@ -290,8 +310,8 @@ export default function PostActions(props: Props) {
               }
             `}
           >
-            <BiRepost className="text-xl" />
-            {repostCount > 0 && abbreviateNumber(repostCount)}
+            <BiRepost className="" />
+            <span className="hidden">{repostCount > 0 && abbreviateNumber(repostCount)}</span>
           </Button>
         </Dropdown.Trigger>
         <Dropdown.Menu>
@@ -325,25 +345,7 @@ export default function PostActions(props: Props) {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Button
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleLike.mutate();
-        }}
-        className={`text-sm font-medium ${
-          liked
-            ? "text-skin-icon-like"
-            : "text-skin-icon-muted hover:text-skin-icon-like"
-        }
-          `}
-      >
-        {liked ? (
-          <BiSolidHeart className="text-lg" />
-        ) : (
-          <BiHeart className="text-lg" />
-        )}
-        {likeCount > 0 && abbreviateNumber(likeCount)}
-      </Button>
+      <span className="grow"></span>
 
       <Dropdown>
         <Dropdown.Trigger>
@@ -353,7 +355,7 @@ export default function PostActions(props: Props) {
             }}
             className="text-skin-icon-muted hover:text-skin-base"
           >
-            <BiDotsHorizontalRounded className="text-lg" />
+            <BiDotsHorizontalRounded className="" />
           </Button>
         </Dropdown.Trigger>
         <Dropdown.Menu>

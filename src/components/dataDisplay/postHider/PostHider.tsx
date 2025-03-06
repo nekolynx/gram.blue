@@ -18,7 +18,7 @@ export default function PostHider(props: Props) {
         e.stopPropagation();
         onToggleVisibility(hidden ? false : true);
       }}
-      className="text-skin-base bg-skin-tertiary flex items-center justify-between gap-2 rounded-lg p-3 font-medium w-full border border-skin-base hover:bg-skin-muted"
+      className="text-skin-base bg-skin-tertiary flex items-center justify-between gap-2 p-3 font-medium w-full border border-skin-base hover:bg-skin-muted"
     >
       <div className="flex items-center gap-2">
         {hidden ? (

@@ -75,36 +75,35 @@ export default function FeedPost(props: Props) {
 
   return (
     <article
-      onClick={(e) => {
+      onClick={(e) => {/*
         e.stopPropagation();
         router.push(
           `/dashboard/user/${post.post.author.handle}/post/${getPostId(
             post.post.uri,
           )}`,
         );
-      }}
-      className="cursor-pointer hover:bg-skin-secondary p-3"
+      */}}
+      className="py-3"
     >
       {reason && <Reason reason={reason} />}
 
-      <div className="relative flex items-start gap-3">
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-            router.push(`/dashboard/user/${author.handle}`);
-          }}
-          className="z-20 shrink-0 hover:brightness-90"
-        >
-          <ProfileHoverCard handle={author.handle}>
-            <Avatar
-              src={author.avatar?.replace("avatar", "avatar_thumbnail")}
-              size="md"
-            />
-          </ProfileHoverCard>
-        </div>
-        <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
-          {isParent && !reason && <Threadline />}
-          <div className="flex">
+      <div className="relative">
+        <div className="flex items-center gap-2 px-2 mb-2">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/dashboard/user/${author.handle}`);
+            }}
+            className="z-20 shrink-0 hover:brightness-90"
+          >
+            <ProfileHoverCard handle={author.handle}>
+              <Avatar
+                src={author.avatar?.replace("avatar", "avatar_thumbnail")}
+                size="sm"
+              />
+            </ProfileHoverCard>
+          </div>
+          <div className="flex items-center w-full">
             <Link
               href={`/dashboard/user/${author.handle}`}
               onClick={(e) => {
@@ -112,34 +111,54 @@ export default function FeedPost(props: Props) {
               }}
               className="flex gap-1"
             >
-              <span className="text-skin-base hover:text-skin-secondary line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
+              <span className="text-skin-base hover:text-skin-secondary line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold hidden">
                 {author.displayName || author.handle}{" "}
               </span>
-              <span className="text-skin-tertiary line-clamp-1 min-w-[10%] shrink break-all font-medium">
+              <span className="text-primary line-clamp-1 min-w-[10%] shrink break-all font-semibold">
                 @{author.handle}
               </span>
+              
             </Link>
+            <span className="grow"/>
             <span className="text-skin-tertiary whitespace-nowrap font-medium">
-              &nbsp;· {getRelativeTime(indexedAt)}
+              {getRelativeTime(indexedAt)}
             </span>
           </div>
-          <PostText record={post.post.record} />
+        </div>
+        <div className={`${isParent && "pb-6"}`}>
+          {isParent && !reason && <Threadline />}
           {showToggle && (
-            <div className="my-2">
               <PostHider
                 message={message}
                 hidden={hidden}
                 onToggleVisibility={setHidden}
                 showToggle={shouldHide}
               />
-            </div>
           )}
           {!hidden && post.post.embed && (
             <PostEmbed content={post.post.embed} depth={0} />
           )}
-          <div className="mt-2">
+          {post.post.embed == null && (
+              <div className="bg-skin-tertiary font-semibold p-6 border border-x-0" style={{minHeight: "40vh"}}>
+                <PostText record={post.post.record} />
+                <div className="font-semibold text-primary">&mdash;{author.displayName}</div>
+              </div>
+          )}
+          <div className="py-3 mx-3 border border-t-0 border-x-0" style={{fontSize: "2em"}}>
             <PostActions post={post.post} />
           </div>
+          <div className="font-semibold text-primary px-3 pt-3">&hearts;&nbsp;{post.post.likeCount} likes &bull; {post.post.repostCount} reposts</div>
+          {post.post.embed != null && (
+            <div className="p-3">
+              <span className="font-semibold text-primary">{author.displayName}</span>&nbsp;
+              <PostText record={post.post.record} />
+            </div>
+          )}
+          <Link href={`/dashboard/user/${post.post.author.handle}/post/${getPostId(post.post.uri,)}`}
+                className="cursor-pointer px-3 w-full text-skin-tertiary"
+                onClick={(e) => {e.stopPropagation();}}>
+                  View all {post.post.replyCount} comments.
+          </Link>
         </div>
       </div>
     </article>

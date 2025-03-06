@@ -86,6 +86,7 @@ export default function ThreadPost(props: Props) {
           {getFormattedDate(post.indexedAt)}
         </div>
       </div>
+      aaa
       <PostActions post={post} mode="thread" />
     </article>
   );

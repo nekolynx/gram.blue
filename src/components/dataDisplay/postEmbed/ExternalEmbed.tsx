@@ -26,7 +26,8 @@ export default function ExternalEmbed(props: Props) {
   }
 
   return (
-    <article className="border border-skin-base mt-2 rounded-lg group">
+    <div className="border border-x-0 p-3 mt-2 bg-skin-secondary">
+    <article className="border border-skin-base mt-2 rounded-lg group m-3">
       <div className="bg-skin-base hover:bg-skin-secondary rounded-t-lg">
         <Link
           href={embed.external.uri}
@@ -71,5 +72,6 @@ export default function ExternalEmbed(props: Props) {
         </Link>
       </div>
     </article>
+    </div>
   );
 }
