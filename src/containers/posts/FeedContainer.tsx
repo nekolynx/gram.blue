@@ -54,7 +54,7 @@ export default function FeedContainer(props: Props) {
           refetchFeed();
         }}
       />
-      <ComposeButton float={true} />
+      
 
       <InfiniteScroll
         dataLength={dataLength ?? 0}

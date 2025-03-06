@@ -6,12 +6,19 @@ import { getUnreadNotificationsCount } from "@/lib/api/bsky/notification";
 import { useQuery } from "@tanstack/react-query";
 import { BiHome, BiPlanet, BiSolidHome, BiSolidPlanet } from "react-icons/bi";
 import { PiMagnifyingGlassBold, PiMagnifyingGlassFill } from "react-icons/pi";
+import { FaUserAlt } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa6";
 import { FaBell } from "react-icons/fa";
 import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
 import { useAgent } from "@/app/providers/agent";
+import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 
-export default function AppBar() {
+interface Props {
+  handle: string;
+}
+
+export default function AppBar(props: Props) {
+  const {handle} = props;
   const pathname = usePathname();
   const agent = useAgent();
 
@@ -37,26 +44,13 @@ export default function AppBar() {
         isActive={pathname === "/dashboard/home"}
       />
       <NavItem
-        href="/dashboard/search"
-        icon={<PiMagnifyingGlassBold className="text-2xl md:text-3xl" />}
-        activeIcon={<PiMagnifyingGlassFill className="text-2xl md:text-3xl" />}
-        title="Search"
-        isActive={pathname.includes("search")}
+        href="/dashboard/explore"
+        icon={<BiHome className="text-2xl md:text-3xl" />}
+        activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
+        title="Home"
+        isActive={pathname === "/dashboard/explore"}
       />
-      <NavItem
-        href="/dashboard/feeds"
-        icon={<BiPlanet className="text-2xl md:text-3xl" />}
-        activeIcon={<BiSolidPlanet className="text-2xl md:text-3xl" />}
-        title="Feeds"
-        isActive={pathname === "/dashboard/feeds"}
-      />
-      <NavItem
-        href="/dashboard/lists"
-        icon={<HiOutlineClipboardList className="text-2xl md:text-3xl" />}
-        activeIcon={<HiClipboardList className="text-2xl md:text-3xl" />}
-        title="Lists"
-        isActive={pathname === "/dashboard/lists"}
-      />
+      <ComposeButton/>
       <NavItem
         href="/dashboard/notifications"
         icon={<FaRegBell className="text-2xl md:text-3xl" />}
@@ -64,6 +58,13 @@ export default function AppBar() {
         title="Notifications"
         isActive={pathname.includes("notifications")}
         badge={notificationsCount ?? 0}
+      />
+      <NavItem
+        href={`/dashboard/user/${handle}`}
+        icon={<FaUserAlt className="text-2xl md:text-3xl" />}
+        activeIcon={<FaUserAlt className="text-2xl md:text-3xl" />}
+        title="Profile"
+        isActive={pathname.includes("user")}
       />
     </nav>
   );
