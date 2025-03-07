@@ -74,6 +74,49 @@ export default function FeedPost(props: Props) {
   }
 
   return (
+    <>
+    { isReply ? 
+
+    <article className="p-3">
+      <ProfileHoverCard handle={author.handle}>
+        <Avatar
+          src={author.avatar?.replace("avatar", "avatar_thumbnail")}
+          size="xs"
+          className="float-left mr-2"
+        />
+      </ProfileHoverCard>
+      <Link
+        href={`/dashboard/user/${author.handle}`}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        className="flex gap-1"
+        >
+      <div className="text-skin-base hover:text-skin-secondary line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
+        {author.displayName || author.handle}{" "}
+      </div>
+      <div className="text-primary line-clamp-1 min-w-[10%] shrink break-all font-semibold">
+        @{author.handle}
+      </div>
+      &nbsp;
+      </Link>
+      <PostText record={post.post.record} />
+      {showToggle && (
+        <PostHider
+          message={message}
+          hidden={hidden}
+          onToggleVisibility={setHidden}
+          showToggle={shouldHide}
+        />
+      )}
+      {!hidden && post.post.embed && (
+        <PostEmbed content={post.post.embed} depth={0} />
+      )}
+      <PostActions post={post.post} mode="thread" />
+    </article>
+
+    :
+
     <article
       onClick={(e) => {/*
         e.stopPropagation();
@@ -83,7 +126,7 @@ export default function FeedPost(props: Props) {
           )}`,
         );
       */}}
-      className="py-3"
+      className="py-3 mb-4"
     >
       {reason && <Reason reason={reason} />}
 
@@ -121,7 +164,11 @@ export default function FeedPost(props: Props) {
             </Link>
             <span className="grow"/>
             <span className="text-skin-tertiary whitespace-nowrap font-medium">
+              <Link href={`/dashboard/user/${post.post.author.handle}/post/${getPostId(post.post.uri,)}`}
+                className="cursor-pointer"
+                onClick={(e) => {e.stopPropagation();}}>
               {getRelativeTime(indexedAt)}
+              </Link>
             </span>
           </div>
         </div>
@@ -139,18 +186,18 @@ export default function FeedPost(props: Props) {
             <PostEmbed content={post.post.embed} depth={0} />
           )}
           {post.post.embed == null && (
-              <div className="bg-skin-tertiary font-semibold p-6 border border-x-0" style={{minHeight: "40vh"}}>
+              <div className="bg-skin-tertiary font-semibold p-6 border border-x-0 border-skin-base" style={{minHeight: "40vh"}}>
                 <PostText record={post.post.record} />
                 <div className="font-semibold text-primary">&mdash;{author.displayName}</div>
               </div>
           )}
-          <div className="py-3 mx-3 border border-t-0 border-x-0" style={{fontSize: "2em"}}>
+          <div className="py-3 mx-3 border border-t-0 border-x-0 border-skin-base" style={{fontSize: "2em"}}>
             <PostActions post={post.post} />
           </div>
           <div className="font-semibold text-primary px-3 pt-3">&hearts;&nbsp;{post.post.likeCount} likes &bull; {post.post.repostCount} reposts</div>
           {post.post.embed != null && (
             <div className="p-3">
-              <span className="font-semibold text-primary">{author.displayName}</span>&nbsp;
+              <Link href={`/dashboard/user/${author.handle}`}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;
               <PostText record={post.post.record} />
             </div>
           )}
@@ -162,5 +209,7 @@ export default function FeedPost(props: Props) {
         </div>
       </div>
     </article>
+        }
+    </>
   );
 }

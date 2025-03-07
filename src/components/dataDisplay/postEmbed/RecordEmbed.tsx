@@ -61,7 +61,7 @@ export default function RecordEmbed(props: Props) {
               <PostText record={record.value} truncate={true} />
             </div>
             {record.embeds && record.embeds.length > 0 && (
-              <div className="border"><PostEmbed content={record.embeds[0]} depth={depth + 1} /></div>
+              <div className="border border-skin-base"><PostEmbed content={record.embeds[0]} depth={depth + 1} /></div>
             )}
           </div>
         </div>

@@ -24,7 +24,7 @@ export default async function SettingsContainer() {
   const isEmailConfirmed = session?.user.emailConfirmed ?? false;
 
   return (
-    <section className="flex flex-col gap-5">
+    <section className="flex flex-col gap-5 p-3">
       <h2 className="text-skin-base mx-3 mb-2 text-2xl font-semibold md:mx-0">
         Settings
       </h2>

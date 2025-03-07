@@ -15,7 +15,7 @@ export default function TopBar(props: Props) {
   const { profile } = props;
 
   return (
-    <div className="bg-skin-base border-skin-base sticky top-0 z-[60] flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden">
+    <div className="bg-primary border-primary sticky top-0 z-[60] flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden">
       <Link
         href={`/dashboard/user/${profile?.handle}`}
         className="hover:brightness-90"
@@ -46,7 +46,7 @@ export default function TopBar(props: Props) {
         </div>{" "}
       </Button>
       <Link href="/dashboard/settings">
-        <BiCog className="text-skin-icon-muted hover:text-skin-icon-base text-2xl md:text-3xl" />
+        <BiCog className="text-skin-icon-inverted hover:text-skin-icon-base text-2xl md:text-3xl" />
       </Link>
     </div>
   );

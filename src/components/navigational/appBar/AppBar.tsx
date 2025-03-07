@@ -35,13 +35,16 @@ export default function AppBar(props: Props) {
   });
 
   return (
-    <nav className="bg-skin-base border-skin-base fixed bottom-0 z-40 flex w-full justify-between gap-6 overflow-auto border-t px-6 pb-8 pt-1 transition-all ease-linear md:hidden">
+    <nav className="bg-skin-inverted border-skin-base fixed bottom-0 z-40 flex justify-center w-full overflow-auto border-t pb-8 transition-all ease-linear md:hidden">
       <NavItem
         href="/dashboard/home"
         icon={<BiHome className="text-2xl md:text-3xl" />}
         activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
         title="Home"
         isActive={pathname === "/dashboard/home"}
+        colorActive="text-skin-icon-inverted bg-skin-overlay"
+        colorBase="text-skin-icon-muted"
+        fullWidth={true}
       />
       <NavItem
         href="/dashboard/explore"
@@ -49,15 +52,21 @@ export default function AppBar(props: Props) {
         activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
         title="Home"
         isActive={pathname === "/dashboard/explore"}
+        colorActive="text-skin-icon-inverted bg-skin-overlay"
+        colorBase="text-skin-icon-muted"
+        fullWidth={true}
       />
-      <ComposeButton/>
+      <ComposeButton rounded={false} fullWidth={true}/>
       <NavItem
         href="/dashboard/notifications"
         icon={<FaRegBell className="text-2xl md:text-3xl" />}
         activeIcon={<FaBell className="text-2xl md:text-3xl" />}
         title="Notifications"
         isActive={pathname.includes("notifications")}
+        colorActive="text-skin-icon-inverted bg-skin-overlay"
+        colorBase="text-skin-icon-muted"
         badge={notificationsCount ?? 0}
+        fullWidth={true}
       />
       <NavItem
         href={`/dashboard/user/${handle}`}
@@ -65,6 +74,9 @@ export default function AppBar(props: Props) {
         activeIcon={<FaUserAlt className="text-2xl md:text-3xl" />}
         title="Profile"
         isActive={pathname.includes("user")}
+        colorActive="text-skin-icon-inverted bg-skin-overlay"
+        colorBase="text-skin-icon-muted"
+        fullWidth={true}
       />
     </nav>
   );

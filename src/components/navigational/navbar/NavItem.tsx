@@ -9,18 +9,21 @@ interface Props {
   activeIcon?: ReactElement;
   isActive?: boolean;
   badge?: number;
+  colorBase?: string;
+  colorActive?: string;
+  fullWidth?: boolean;
 }
 
 export default function NavItem(props: Props) {
-  const { href, title, icon, activeIcon, isActive, badge } = props;
+  const { href, title, icon, activeIcon, isActive, badge, colorBase="text-skin-secondary", colorActive="text-skin-base", fullWidth } = props;
   return (
     <Link
       href={href}
-      className={`hover:text-skin-base flex items-center ${
-        isActive ? "text-skin-base" : "text-skin-secondary"
+      className={`${fullWidth && "w-full justify-center"} hover:text-skin-base flex items-center ${
+        isActive ? colorActive : colorBase
       } ${title && "gap-3"}`}
     >
-      <div className="relative m-2 md:m-0">
+      <div className={`relative ${"m-2 md:m-0"}`}>
         {isActive ? activeIcon : icon}
         {badge !== undefined && badge > 0 && (
           <Badge variant="overlay" position="topRight">

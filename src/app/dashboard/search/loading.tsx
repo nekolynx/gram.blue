@@ -3,7 +3,7 @@ import Search from "@/components/filter/search/Search";
 
 export default function Loading() {
   return (
-    <section className="flex flex-col gap-5">
+    <section className="flex flex-col gap-5 p-3">
       <section>
         <div className="mx-3 mb-2 flex items-center justify-between md:mx-0">
           <h2 className="text-skin-base text-2xl font-semibold">Search</h2>

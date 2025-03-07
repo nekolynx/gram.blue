@@ -18,7 +18,7 @@ export default function RepliesContainer(props: Props) {
   return (
     <>
       {replies.map((reply, j) => (
-        <div key={j}>
+        <div key={j} className="reply">
           {AppBskyFeedDefs.isBlockedPost(reply) && <BlockedEmbed depth={0} />}
           {AppBskyFeedDefs.isNotFoundPost(reply) && <NotFoundEmbed depth={0} />}
           {AppBskyFeedDefs.isBlockedAuthor(reply) && <BlockedEmbed depth={0} />}
@@ -28,6 +28,7 @@ export default function RepliesContainer(props: Props) {
               post={reply}
               filter={contentFilter}
               isParent={j < replies.length - 1 && j < MAX_REPLIES}
+              isReply={true}
             />
           )}
 
