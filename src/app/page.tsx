@@ -7,17 +7,10 @@ export default function Home() {
       <header className="mx-auto flex max-w-xl items-center justify-between animate-fade">
         <div className="flex items-center gap-3">
           <Image
-            src="/ouranos.svg"
-            alt="Ouranos logo"
-            width={40}
-            height={40}
-            className="block transition-transform duration-700 ease-in-out hover:rotate-180"
-          />
-          <Image
             src="/ouranosText.svg"
-            alt="Ouranos text"
-            width={70}
-            height={20}
+            alt="gram.blue"
+            width={90}
+            height={28}
           />
         </div>
         <Link

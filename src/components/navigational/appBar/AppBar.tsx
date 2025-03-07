@@ -10,6 +10,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa6";
 import { FaBell } from "react-icons/fa";
 import { HiClipboardList, HiOutlineClipboardList } from "react-icons/hi";
+import { PiCompassRoseFill } from "react-icons/pi";
 import { useAgent } from "@/app/providers/agent";
 import ComposeButton from "@/components/actions/composeButton/ComposeButton";
 
@@ -35,10 +36,10 @@ export default function AppBar(props: Props) {
   });
 
   return (
-    <nav className="bg-skin-inverted border-skin-base fixed bottom-0 z-40 flex justify-center w-full overflow-auto border-t pb-8 transition-all ease-linear md:hidden">
+    <nav id="appBottom" className="bg-skin-inverted border-skin-secondary fixed bottom-0 z-40 flex justify-center w-full overflow-auto border-t pb-8 transition-all ease-linear md:hidden">
       <NavItem
         href="/dashboard/home"
-        icon={<BiHome className="text-2xl md:text-3xl" />}
+        icon={<BiSolidHome className="text-2xl md:text-3xl" />}
         activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
         title="Home"
         isActive={pathname === "/dashboard/home"}
@@ -48,8 +49,8 @@ export default function AppBar(props: Props) {
       />
       <NavItem
         href="/dashboard/explore"
-        icon={<BiHome className="text-2xl md:text-3xl" />}
-        activeIcon={<BiSolidHome className="text-2xl md:text-3xl" />}
+        icon={<PiCompassRoseFill className="text-2xl md:text-3xl" />}
+        activeIcon={<PiCompassRoseFill className="text-2xl md:text-3xl" />}
         title="Home"
         isActive={pathname === "/dashboard/explore"}
         colorActive="text-skin-icon-inverted bg-skin-overlay"
@@ -59,7 +60,7 @@ export default function AppBar(props: Props) {
       <ComposeButton rounded={false} fullWidth={true}/>
       <NavItem
         href="/dashboard/notifications"
-        icon={<FaRegBell className="text-2xl md:text-3xl" />}
+        icon={<FaBell className="text-2xl md:text-3xl" />}
         activeIcon={<FaBell className="text-2xl md:text-3xl" />}
         title="Notifications"
         isActive={pathname.includes("notifications")}

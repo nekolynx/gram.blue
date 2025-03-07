@@ -10,12 +10,11 @@ export default function NotFound() {
   return (
     <main className="flex h-[100svh] flex-col items-center justify-center p-3">
       <div className="flex items-center gap-3">
-        <Image src="/ouranos.svg" alt="Ouranos logo" width={40} height={40} />
         <Image
           src="/ouranosText.svg"
-          alt="Ouranos text"
-          width={70}
-          height={20}
+          alt="gram.blue"
+          width={90}
+          height={28}
         />
       </div>
       <h1 className="mt-2 text-center text-lg sm:text-xl">

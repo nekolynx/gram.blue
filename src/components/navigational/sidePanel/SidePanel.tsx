@@ -13,16 +13,8 @@ export default function SidePanel() {
       >
         <div className="flex items-center gap-3 group">
           <Image
-            src="/ouranos.svg"
-            alt="Ouranos logo"
-            width={44}
-            height={44}
-            priority
-            className="block transition-transform ease-in-out duration-700 group-hover:rotate-180"
-          />
-          <Image
             src="/ouranosText.svg"
-            alt="Ouranos text"
+            alt="gram.blue"
             width={84}
             height={26}
             priority

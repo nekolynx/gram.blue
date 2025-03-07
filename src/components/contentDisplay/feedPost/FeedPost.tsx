@@ -2,6 +2,7 @@
 
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import PostActions from "@/components/dataDisplay/postActions/PostActions";
+import PostActionsBy from "@/components/dataDisplay/postActions/PostActionsBy";
 import PostEmbed from "@/components/dataDisplay/postEmbed/PostEmbed";
 import PostText from "@/components/dataDisplay/postText/postText";
 import Reason from "@/components/dataDisplay/reason/Reason";
@@ -194,7 +195,7 @@ export default function FeedPost(props: Props) {
           <div className="py-3 mx-3 border border-t-0 border-x-0 border-skin-base" style={{fontSize: "2em"}}>
             <PostActions post={post.post} />
           </div>
-          <div className="font-semibold text-primary px-3 pt-3">&hearts;&nbsp;{post.post.likeCount} likes &bull; {post.post.repostCount} reposts</div>
+          <PostActionsBy post={post.post}/>
           {post.post.embed != null && (
             <div className="p-3">
               <Link href={`/dashboard/user/${author.handle}`}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;

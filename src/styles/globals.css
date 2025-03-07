@@ -48,49 +48,6 @@
         --color-fuck:255,0,0;
     }
 
-    [data-theme="dim"] {
-        /* Brand */
-        --color-primary: 45, 101, 153;
-        --color-primary-light: 191, 119, 255;
-        --color-primary-dark: 151, 33, 255;
-
-        /* Background */
-        --color-background-base: 38, 38, 38; /* bg-neutral-800 */
-        --color-background-secondary: 64, 64, 64; /* bg-neutral-700 */
-        --color-background-tertiary: 64, 64, 64; /* bg-neutral-700 */
-        --color-background-muted: 82, 82, 82; /* bg-neutral-600 */
-        --color-background-inverted: 245, 245, 245; /* bg-neutral-100 */
-        --color-background-inverted-muted: 212, 212, 212; /* bg-neutral-300 */
-        --color-background-overlay: 0, 0, 0; /* bg-black/50, alpha applied in config */
-        --color-background-overlay-muted: 0, 0, 0; /* bg-black/80, alpha applied in config */
-
-        /* Text */
-        --color-text-base: 229, 229, 229; /* text-neutral-200 */
-        --color-text-secondary: 212, 212, 212; /* text-neutral-300 */
-        --color-text-tertiary: 163, 163, 163; /* text-neutral-400 */
-        --color-text-base-inverted: 64, 64, 64; /* text-neutral-700 */
-        --color-text-link-base: 191, 119, 255; /* primary-light */
-        --color-text-link-base-hover: 169, 74, 255; /* primary */
-
-        /* Border and outline */
-        --color-border-base: 64, 64, 64; /* border-neutral-700 */
-        --color-border-secondary: 163, 163, 163; /* border-neutral-400 */
-        --color-outline-base: 163, 163, 163; /* outline-neutral-400 */
-
-        /* Icon */
-        --color-icon-base: 168, 162, 158; /* text-neutral-400 */
-        --color-icon-muted: 115, 115, 115; /* text-neutral-500 */
-        --color-icon-inverted: 255, 255, 255; /* bg-white */
-        --color-icon-like: 239, 68, 68; /* text-red-500 */
-        --color-icon-repost: 74, 222, 128; /* text-green-400 */
-
-        /* Status */
-        --color-status-base: 168, 162, 158; /* text-neutral-400 */
-        --color-status-success: 74, 222, 128; /* text-green-400 */
-        --color-status-warning: 251, 146, 60; /* text-orange-400 */
-        --color-status-danger: 239, 68, 68; /* text-red-500 */
-    }
-
     [data-theme="dark"] {
         /* Brand */
         --color-primary: 169, 74, 255;
@@ -133,7 +90,7 @@
         --color-status-warning: 251, 146, 60; /* text-orange-400 */
         --color-status-danger: 239, 68, 68; /* text-red-500 */
     }
-    [data-theme="test"] {
+    [data-theme="2015"],[data-theme="2012"] {
         /* Brand */
         --color-primary: 17, 86, 136;
         --color-primary-light: 81, 127, 164;
@@ -209,4 +166,26 @@
     .no-scrollbar {
         scrollbar-width: none; /* Firefox */
     }
+}
+
+[data-theme="2012"] {
+    #appTop {background: linear-gradient( #517fa4, #306088);}
+    #appBottom {background: linear-gradient( #616161, #444444 50%)}
+    #appBottom a,
+    #appBottom button {
+        border: 1px solid;
+        position: relative;
+        border-color: #000 #000 #0003
+      }
+    #appBottom a::before,
+    #appBottom button::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: -1px;
+        border: 1px solid;
+        border-color: #ffffff20 #ffffff20 #ffffff00;
+      }
 }
