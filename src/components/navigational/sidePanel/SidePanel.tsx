@@ -13,7 +13,7 @@ export default function SidePanel() {
       >
         <div className="flex items-center gap-3 group">
           <Image
-            src="/ouranosText.svg"
+            src="/gramblueText.svg"
             alt="gram.blue"
             width={84}
             height={26}

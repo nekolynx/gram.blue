@@ -1,5 +1,6 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import Button from "@/components/actions/button/Button";
 import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
@@ -26,12 +27,12 @@ export default function TopBar(props: Props) {
         />
       </Link>
       <Button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        onClick={() => (window.scrollY == 0 ? redirect("/") : window.scrollTo({ top: 0, behavior: "smooth" }))}
         className="inline"
       >
         <div className="flex items-center gap-2 group">
           <Image
-            src="/ouranosText.svg"
+            src="/gramblueText.svg"
             alt="gram.blue"
             width={90}
             height={28}

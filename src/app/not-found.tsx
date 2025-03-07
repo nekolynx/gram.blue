@@ -11,7 +11,7 @@ export default function NotFound() {
     <main className="flex h-[100svh] flex-col items-center justify-center p-3">
       <div className="flex items-center gap-3">
         <Image
-          src="/ouranosText.svg"
+          src="/gramblueText.svg"
           alt="gram.blue"
           width={90}
           height={28}

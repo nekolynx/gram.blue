@@ -7,7 +7,7 @@ export default function Home() {
       <header className="mx-auto flex max-w-xl items-center justify-between animate-fade">
         <div className="flex items-center gap-3">
           <Image
-            src="/ouranosText.svg"
+            src="/gramblueText.svg"
             alt="gram.blue"
             width={90}
             height={28}

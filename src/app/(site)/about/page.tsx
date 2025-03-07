@@ -8,7 +8,7 @@ export default function Page() {
       <header className="mx-auto flex max-w-xl items-center justify-between animate-fade">
         <div className="flex items-center gap-3">
           <Image
-            src="/ouranosText.svg"
+            src="/gramblueText.svg"
             alt="Ouranos text"
             width={90}
             height={28}
