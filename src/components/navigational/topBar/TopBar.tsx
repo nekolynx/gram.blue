@@ -5,7 +5,7 @@ import Avatar from "@/components/dataDisplay/avatar/Avatar";
 import { ProfileViewDetailed } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
 import Image from "next/image";
 import Link from "next/link";
-import { BiCog } from "react-icons/bi";
+import { HiCog } from "react-icons/hi";
 
 interface Props {
   profile: ProfileViewDetailed;
@@ -39,7 +39,7 @@ export default function TopBar(props: Props) {
         </div>{" "}
       </Button>
       <Link href="/dashboard/settings">
-        <BiCog className="text-skin-icon-inverted hover:text-skin-icon-base text-2xl md:text-3xl" />
+        <HiCog className="text-skin-icon-inverted hover:text-skin-icon-base text-2xl md:text-3xl" />
       </Link>
     </div>
   );

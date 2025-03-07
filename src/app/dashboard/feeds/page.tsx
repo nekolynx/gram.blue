@@ -18,7 +18,7 @@ export default function Page(props: Props) {
   const query = searchParams?.query || "";
 
   return (
-    <section className="flex flex-col gap-5 p-3">
+    <section className="flex flex-col gap-5">
       <section>
         <div className="mx-3 mb-2 flex items-center justify-between md:mx-0">
           <h2 className="text-skin-base text-2xl font-semibold">My Feeds</h2>

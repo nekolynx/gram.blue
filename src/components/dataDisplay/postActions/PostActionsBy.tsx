@@ -14,14 +14,22 @@ export default function PostActions(props: Props) {
             <Link href={`/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}/liked-by`}>
               &hearts;&nbsp;{post.likeCount} likes
             </Link>
-            &nbsp;&bull;&nbsp;
-            <Link href={`/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}/reposted-by`}>
-                {post.repostCount} reposts
-            </Link>
-            &nbsp;&bull;&nbsp;
-            <Link href={`/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}/quotes`}>
-                {post.quoteCount} quotes
-            </Link>
+            {post.repostCount! > 0 && 
+            <>
+                &nbsp;&bull;&nbsp;
+                <Link href={`/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}/reposted-by`}>
+                    {post.repostCount} reposts
+                </Link>
+            </>
+            }
+            {post.quoteCount! > 0 && 
+            <>
+                &nbsp;&bull;&nbsp;
+                <Link href={`/dashboard/user/${post.author.handle}/post/${getPostId(post.uri)}/quotes`}>
+                    {post.quoteCount} quotes
+                </Link>
+            </>
+            }
             
         </div>
     )
