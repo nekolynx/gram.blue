@@ -38,7 +38,7 @@ export default function GifEmbed(props: Props) {
   return (
     <div
       onClick={togglePlayPause}
-      className="w-fit relative cursor-pointer rounded-md group"
+      className="w-fit relative cursor-pointer group"
     >
       <video
         ref={videoRef}
@@ -59,7 +59,7 @@ export default function GifEmbed(props: Props) {
       {embed.alt && <AltTag text={embed.alt} />}
       {isLoading && (
         <div
-          className="rounded-md bg-skin-muted animate-pulse"
+          className="bg-skin-muted animate-pulse"
           style={{
             width: embed.dimensions.width,
             height: embed.dimensions.height,

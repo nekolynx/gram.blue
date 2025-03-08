@@ -18,12 +18,12 @@ const VideoEmbed = memo(function VideoEmbed(props: Props) {
   const { aspectRatio, playlist, thumbnail, alt } = props;
 
   return (
-    <div className="aspect-video mt-2 rounded-md hover:brightness-90 hover:cursor-pointer overflow-hidden">
+    <div className="aspect-video mt-2 hover:brightness-90 hover:cursor-pointer overflow-hidden" style={{backgroundColor: "#000"}}>
       <MediaPlayer
         crossOrigin
         playsInline
         viewType="video"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover rounded-none"
         src={playlist}
         poster={thumbnail ?? ""}
         onClick={(e) => e.stopPropagation()}
