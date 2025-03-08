@@ -2,8 +2,8 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Ephemerogram",
-    short_name: "Ephemerogram",
+    name: "gram.blue",
+    short_name: "gram.blue",
     description: "Bluesky web client designed to looke like classic Instagram",
     start_url: "/dashboard/home",
     display: "standalone",
