@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
 import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
+import { FaPlus } from "react-icons/fa";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -138,7 +139,7 @@ export default function FeedPost(props: Props) {
               e.stopPropagation();
               router.push(`/dashboard/user/${author.handle}`);
             }}
-            className="z-20 shrink-0 hover:brightness-90"
+            className="z-20 shrink-0 hover:brightness-90 relative"
           >
             <ProfileHoverCard handle={author.handle}>
               <Avatar
@@ -146,6 +147,7 @@ export default function FeedPost(props: Props) {
                 size="sm"
               />
             </ProfileHoverCard>
+            {!author.viewer?.following && <FaPlus className="absolute bottom-0 right-0 bg-skin-inverted text-skin-inverted rounded-full p-1"/>}
           </div>
           <div className="flex items-center w-full">
             <Link
