@@ -72,7 +72,7 @@ export default function UserPostsConatiner(props: Props) {
           userPostsData &&
           contentFilter &&
           userPostsData?.pages.map((page, i) => (
-            <div key={i}>
+            <div key={i} className={`${mode==="media" ? "grid gap-1" : " "}`} style={{gridTemplateColumns: mode==="media" ? "33% 33% 33%" : "100%"}}>
               {mode === "posts" &&
                 page.data.feed
                   .filter((post) => !post.reply)
@@ -91,6 +91,7 @@ export default function UserPostsConatiner(props: Props) {
                     post={post}
                     isReply={!!post.reply}
                     filter={contentFilter}
+                    mediaOnly={mode==="media"}
                   />
                 ))}
             </div>

@@ -19,7 +19,7 @@ export default function NavItem(props: Props) {
   return (
     <Link
       href={href}
-      className={`${fullWidth && "w-full justify-center"} hover:text-skin-base flex items-center ${
+      className={`${fullWidth && "w-full justify-center"} ${!isActive && "hover:text-skin-base"} flex items-center ${
         isActive ? colorActive : colorBase
       } ${title && "gap-3"}`}
     >
