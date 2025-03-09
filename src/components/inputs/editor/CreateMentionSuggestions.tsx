@@ -2,7 +2,7 @@ import type { MentionOptions } from "@tiptap/extension-mention";
 import { ReactRenderer } from "@tiptap/react";
 import SuggestionList, { type SuggestionListRef } from "./SuggestionList";
 import { ProfileViewBasic } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import tippy, { type Instance as TippyInstance } from "../../../../node_modules/tippy.js";
+import tippy, { type Instance as TippyInstance } from "tippy.js";
 
 const DOM_RECT_FALLBACK: DOMRect = {
   bottom: 0,
