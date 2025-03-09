@@ -140,6 +140,9 @@ importers:
       tinyld:
         specifier: ^1.3.4
         version: 1.3.4
+      tippy.js:
+        specifier: ^6.3.7
+        version: 6.3.7
       use-clipboard-copy:
         specifier: ^0.2.0
         version: 0.2.0(react@18.3.1)
