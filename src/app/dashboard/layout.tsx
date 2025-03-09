@@ -33,7 +33,7 @@ export default async function DashboardLayout({
           </div>
         </section>
         {profile && <Aside avatar={profile?.avatar} handle={profile?.handle} />}
-        <AppBar handle={profile?.handle}/>
+        <AppBar handle={`${profile?.handle}`}/>
       </main>
     </AgentProvider>
   );
