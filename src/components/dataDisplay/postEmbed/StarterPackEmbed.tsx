@@ -20,7 +20,8 @@ export default function StarterPackEmbed(props: Props) {
   return (
     <>
       {depth < 2 && (
-        <article className="border border-skin-base mt-2 rounded-lg group">
+        <div className="border border-x-0 p-3 mt-2 bg-skin-tertiary border-skin-base" style={{borderRadius: "inherit"}}>
+        <article className="border border-skin-base mt-2 rounded-lg group m-3">
           <div className="bg-skin-base hover:bg-skin-secondary rounded-lg">
             <Link
               href={starterPackHref}
@@ -63,6 +64,7 @@ export default function StarterPackEmbed(props: Props) {
             </Link>
           </div>
         </article>
+        </div>
       )}
     </>
   );

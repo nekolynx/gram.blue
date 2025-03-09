@@ -19,11 +19,10 @@ export default function PostThumbnail(props: Props) {
 
   const getEmbed = (content: AppBskyFeedDefs.FeedViewPost["post"]["embed"]) => {
     if (AppBskyEmbedImages.isView(content)) {
-      return (
-      <>
-        <div style={{backgroundImage: `url(${content.images[0].thumb})`,height: "33vw"}} className="w-full bg-cover bg-center"/>
-      </>
-      )
+        return <div style={{backgroundImage: `url(${content.images[0].thumb})`,height: "33vw"}} className="w-full bg-cover bg-center"/>
+    }
+    else if(AppBskyEmbedVideo.isView(content)) {
+        return <div style={{backgroundImage: `url(${content.thumbnail})`,height: "33vw"}} className="w-full bg-cover bg-center"/>
     }
   };
 

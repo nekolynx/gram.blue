@@ -89,9 +89,7 @@ export default function FeedPostMedia(props: Props) {
       className=""
     >
       {reason && <Reason reason={reason} />}
-
       <div className="relative">
-        <div className={`${isParent && "pb-6"}`}>
           {showToggle && (
               <PostHider
                 message={message}
@@ -105,7 +103,6 @@ export default function FeedPostMedia(props: Props) {
                 <PostThumbnail content={post.post.embed} depth={0} /> 
             </>
           )}
-        </div>
       </div>
     </article>
   );
