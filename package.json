@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "gen-api": "lex gen-api ./types/atmosphere ./lexicons/**/*.json",
-    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:build": "pnpm dlx @cloudflare/next-on-pages",
     "preview": "npm run pages:build && wrangler pages dev",
     "deploy": "npm run pages:build && wrangler pages deploy"
   },
