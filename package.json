@@ -1,6 +1,6 @@
 {
-  "name": "ouranos",
-  "version": "0.7.0",
+  "name": "gramblue",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
