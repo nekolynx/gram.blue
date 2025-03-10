@@ -79,10 +79,10 @@ export function CreateMentionSuggestions({
         onUpdate(props) {
           component?.updateProps(props);
 
-          popup?.setProps({
+         /*popup?.setProps({
             getReferenceClientRect: () =>
               props.clientRect?.() ?? DOM_RECT_FALLBACK,
-          });
+          });*/
         },
 
         onKeyDown(props) {
