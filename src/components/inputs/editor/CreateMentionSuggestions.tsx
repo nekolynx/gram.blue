@@ -2,7 +2,7 @@ import type { MentionOptions } from "@tiptap/extension-mention";
 import { ReactRenderer } from "@tiptap/react";
 import SuggestionList, { type SuggestionListRef } from "./SuggestionList";
 import { ProfileViewBasic } from "@atproto/api/dist/client/types/app/bsky/actor/defs";
-import tippy, { type Instance as TippyInstance } from "tippy.js"
+//import tippy, { type Instance as TippyInstance } from "tippy.js"
 
 const DOM_RECT_FALLBACK: DOMRect = {
   bottom: 0,
@@ -53,7 +53,7 @@ export function CreateMentionSuggestions({
 
     render: () => {
       let component: ReactRenderer<SuggestionListRef> | undefined;
-      let popup: TippyInstance | undefined;
+      //let popup: TippyInstance | undefined;
       let parent: HTMLDivElement | null = document.querySelector("#composer");
 
       return {
@@ -62,7 +62,7 @@ export function CreateMentionSuggestions({
             props,
             editor: props.editor,
           });
-
+          /*
           popup = tippy("body", {
             getReferenceClientRect: () =>
               props.clientRect?.() ?? DOM_RECT_FALLBACK,
@@ -73,6 +73,7 @@ export function CreateMentionSuggestions({
             trigger: "manual",
             placement: "bottom-start",
           })[0];
+          */
         },
 
         onUpdate(props) {
@@ -86,7 +87,7 @@ export function CreateMentionSuggestions({
 
         onKeyDown(props) {
           if (props.event.key === "Escape") {
-            popup?.hide();
+            //popup?.hide();
             return true;
           }
 
@@ -98,7 +99,7 @@ export function CreateMentionSuggestions({
         },
 
         onExit() {
-          popup?.destroy();
+          //popup?.destroy();
           component?.destroy();
 
           // Remove references to the old popup and component upon destruction/exit.
@@ -106,7 +107,7 @@ export function CreateMentionSuggestions({
           // warns in the console is a sign of a memory leak, as the `suggestion`
           // plugin seems to call `onExit` both when a suggestion menu is closed after
           // a user chooses an option, *and* when the editor itself is destroyed.)
-          popup = undefined;
+          //popup = undefined;
           component = undefined;
         },
       };
