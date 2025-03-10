@@ -17,7 +17,7 @@ export default function Home() {
         </div>
         <Link
           href="/about"
-          className="font-medium homeBannerButton animate-fade-up animate-delay-120"
+          className="font-medium homeBannerButton"
         >
           About
         </Link>

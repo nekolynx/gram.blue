@@ -5,35 +5,53 @@ import Link from "next/link";
 export default function Page() {
   return (
     <main className="mx-auto mt-0 p-5 md:mt-16">
+      <div className="absolute top-0 left-0 right-0 bg-primary homepageBanner" style={{height: "280px", zIndex: "-1"}}></div>
       <header className="mx-auto flex max-w-xl items-center justify-between animate-fade">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 p-3">
+          <Image src="/icon.png" alt="gram.blue icon" width={48} height={48}/>
           <Image
             src="/gramblueText.svg"
-            alt="Ouranos text"
-            width={90}
+            alt="gram.blue"
+            width={150}
             height={28}
           />
         </div>{" "}
         <Link
           href="/"
-          className="text-skin-secondary hover:text-skin-base font-medium"
+          className="font-medium homeBannerButton"
         >
           Home
         </Link>
       </header>
-      <section className="animate-fade mx-auto mt-16 max-w-xl">
+      <section id="homeAbout" className="mx-auto mt-16 max-w-xl p-6 rounded-xl">
         <h1 className="text-skin-base mb-6 max-w-lg text-4xl font-medium">
           About
         </h1>
-        <p className="text-skin-base">
-          Ouranos is an open-source{" "}
+          <p className="text-skin-base mb-3">
+          <strong>gram.blue</strong> is a web client for <Link href="https://blueskyweb.xyz/" className="underline underline-offset-2">Bluesky</Link> designed to look like pre-2016 Instagram. 
+          It has no affiliation with Meta and its products and does not use their database and servers.
+          </p>
+          <p className="text-skin-base mb-3">
+          This project is forked from{" "}
           <Link
-            href="https://blueskyweb.xyz/"
+            href="https://useouranos.app/"
+            className="underline underline-offset-2"
+          >Ouranos</Link>{" "}
+          (source:{" "}
+          <Link
+            href="https://github.com/pdelfan/ouranos"
+            className="underline underline-offset-2"
+          >GitHub</Link>
+          ). Basically, <Link
+            href="https://pouriade.com"
             className="underline underline-offset-2"
           >
-            Bluesky
+            Pouria
           </Link>{" "}
-          client for the web, built using{" "}
+          did all the hard work and I just messed around with it.
+          </p>
+        <p className="text-skin-base">
+          This app is built using{" "}
           <Link
             href="https://nextjs.org/"
             className="underline underline-offset-2"
@@ -50,18 +68,6 @@ export default function Page() {
           , a decentralized networking technology for social media. This is
           similar to Twitter apps such as Twitterrific or Tweetbot that used
           Twitter's API in the past.
-        </p>
-
-        <p className="text-skin-base mt-3">
-          The app is being developed and designed by me,{" "}
-          <Link
-            href="https://pouriade.com"
-            className="underline underline-offset-2"
-          >
-            Pouria
-          </Link>
-          . I started the project to learn more about the AT Protocol and as fun
-          way to practice my skills.
         </p>
 
         <h2 className="text-skin-base mb-6 mt-12 text-2xl font-medium">
@@ -105,64 +111,26 @@ export default function Page() {
         </h3>
         <p className="text-skin-base">
           App passwords allow you to log in and use the app, but restrict
-          third-party clients (ex. Ouranos) from certain functionalities such as
+          third-party clients (ex. gram.blue, Ouranos) from certain functionalities such as
           account deletion or generating additional app passwords.
         </p>
-        <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
-          Where can I see progress updates?
-        </h3>
-        <p className="text-skin-base">
-          You can see what is being worked on under{" "}
-          <Link
-            href="https://github.com/users/pdelfan/projects/1"
-            className="underline underline-offset-2"
-          >
-            projects
-          </Link>{" "}
-          on GitHub.{" "}
-        </p>
-
         <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
           How can I provide feedback?
         </h3>
         <p className="text-skin-base">
-          If you have an account on GitHub, you can go to the project's{" "}
-          <Link
-            href="https://github.com/pdelfan/ouranos"
-            className="underline underline-offset-2"
-          >
-            repository
-          </Link>{" "}
-          and create an issue with a provided label (feature request, bug,
-          question, etc). For general questions and anything that else that
-          comes to your mind, there is{" "}
-          <Link
-            href="https://github.com/pdelfan/ouranos/discussions"
-            className="underline underline-offset-2"
-          >
-            Discussions
-          </Link>
-          . If you are not on GitHub, you can also{" "}
-          <Link
-            href="https://bsky.app/profile/did:plc:3sapfnszmvjc6wa4ml3ybkwb"
-            className="underline underline-offset-2"
-          >
-            mention me on Bluesky
-          </Link>
-          .
+          Contact me on <Link href="https://bsky.app/profile/phone.zomgclan.com" className="underline underline-offset-2">BlueSky</Link> I guess ¯\_(ツ)_/¯. 
+          My repository is kind of a mess; I don't recommend looking at it, but if you must you can find it on <Link href="https://github.com/nekolynx/gram.blue" className="underline underline-offset-2">GitHub</Link>.
         </p>
 
         <h3 className="text-skin-base mb-1 mt-6 text-lg font-semibold">
           Can I support the project?
         </h3>
         <p className="text-skin-base mt-3">
-          If you like to support the project and help keep the site up and
-          running, stay tuned for more information! If you enjoy using Ouranos,
-          let me know! I'd love to hear from you.
+          I don't plan on profiting off this little hobby project, especially since I'm remixing someone else's hard work. Go support my other projects like <Link href="https://store.steampowered.com/app/2076950/Waifu_Klondike_Solitaire/" className="underline underline-offset-2">Waifu Klondike Solitaire</Link>.
         </p>
       </section>
       <footer className="text-skin-tertiary mt-16 text-center text-sm font-medium">
-        OURANOS · {new Date().getFullYear()}
+        Built off of OURANOS · {new Date().getFullYear()}
       </footer>
     </main>
   );
