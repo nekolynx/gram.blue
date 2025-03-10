@@ -7,10 +7,11 @@ interface Props {
   hidden: boolean;
   onToggleVisibility: Dispatch<SetStateAction<boolean>>;
   showToggle: boolean;
+  className?: string;
 }
 
 export default function PostHider(props: Props) {
-  const { message, hidden, onToggleVisibility, showToggle } = props;
+  const { message, hidden, onToggleVisibility, showToggle, className } = props;
 
   return (
     <Button
@@ -18,7 +19,7 @@ export default function PostHider(props: Props) {
         e.stopPropagation();
         onToggleVisibility(hidden ? false : true);
       }}
-      className="text-skin-base bg-skin-tertiary flex items-center justify-between gap-2 p-3 font-medium w-full border border-skin-base hover:bg-skin-muted"
+      className={`text-skin-base bg-skin-tertiary flex items-center justify-between gap-2 p-3 font-medium w-full border border-skin-base hover:bg-skin-muted ` + className}
     >
       <div className="flex items-center gap-2">
         {hidden ? (

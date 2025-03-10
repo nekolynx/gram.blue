@@ -86,22 +86,24 @@ export default function FeedPostMedia(props: Props) {
           )}`,
         );
       }}
-      className=""
+      className="media hover:cursor-pointer"
     >
       {reason && <Reason reason={reason} />}
       <div className="relative">
+          
+          {post.post.embed && (
+            <>
+                <PostThumbnail content={post.post.embed} depth={0} blur={hidden} /> 
+            </>
+          )}
           {showToggle && (
               <PostHider
                 message={message}
                 hidden={hidden}
                 onToggleVisibility={setHidden}
                 showToggle={shouldHide}
+                className="absolute top-0 text-xs"
               />
-          )}
-          {!hidden && post.post.embed && (
-            <>
-                <PostThumbnail content={post.post.embed} depth={0} /> 
-            </>
           )}
       </div>
     </article>
