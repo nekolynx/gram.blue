@@ -122,7 +122,7 @@ export default function FeedPostReply(props: Props) {
             {!hidden && post.post.embed && (
                 <PostEmbed content={post.post.embed} depth={0} />
             )}
-            <PostActions post={post.post} mode="thread" />
+            <PostActions post={post.post} mode="reply" />
         </div>
     </article>
 

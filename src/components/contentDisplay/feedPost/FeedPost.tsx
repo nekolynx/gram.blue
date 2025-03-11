@@ -61,7 +61,7 @@ export default function FeedPost(props: Props) {
         {reason && <Reason reason={reason} />}
         <div className="relative flex items-start gap-3">
           <Avatar size="md" className="z-20 shrink-0" />
-          <div className={`flex grow flex-col ${isParent && "pb-6"}`}>
+          <div className={`flex grow flex-col ${isParent && ""}`}>
             {isParent && !reason && <Threadline />}
             <PostHider
               message={"Post by muted user"}
@@ -102,7 +102,8 @@ export default function FeedPost(props: Props) {
       </div>
       &nbsp;
       </Link>
-      <PostText record={post.post.record} />
+      <div style={{paddingLeft: "1.75rem"}}>
+      <PostText record={post.post.record}/>
       {showToggle && (
         <PostHider
           message={message}
@@ -114,7 +115,8 @@ export default function FeedPost(props: Props) {
       {!hidden && post.post.embed && (
         <PostEmbed content={post.post.embed} depth={0} />
       )}
-      <PostActions post={post.post} mode="thread" />
+      </div>
+      <PostActions post={post.post} mode="reply" />
     </article>
 
     :
@@ -128,7 +130,7 @@ export default function FeedPost(props: Props) {
           )}`,
         );
       */}}
-      className="py-3 mb-4"
+      className={`py-3 ${isParent ? " " : "mb-4"}`}
     >
       {reason && <Reason reason={reason} />}
 
@@ -175,7 +177,7 @@ export default function FeedPost(props: Props) {
             </span>
           </div>
         </div>
-        <div className={`${isParent && "pb-6"}`}>
+        <div className={`${isParent && "pl-8"}`}>
           {isParent && !reason && <Threadline />}
           {showToggle && (
               <PostHider

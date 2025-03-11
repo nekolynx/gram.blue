@@ -30,7 +30,7 @@ import { MdOutlineTranslate, MdIosShare } from "react-icons/md";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
-  mode?: "thread" | "feed";
+  mode?: "thread" | "feed" | "reply";
 }
 
 export default function PostActions(props: Props) {
@@ -64,6 +64,150 @@ export default function PostActions(props: Props) {
   }, [text]);
 
   if (!session) return null;
+
+  if (mode === "reply") {
+    return (
+      <>
+        <div className={`mt-1 flex justify-start gap-3`}>
+        <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleLike.mutate();
+            }}
+            className={
+              liked
+                ? "text-skin-icon-like"
+                : "text-skin-icon-muted hover:text-skin-icon-like"
+            }
+          >
+            {liked ? (
+              <BiSolidHeart className="text-xl" />
+            ) : (
+              <BiHeart className="text-xl" />
+            )}
+          </Button>
+          <Button
+            disabled={post.viewer?.replyDisabled}
+            onClick={(e) => {
+              e.stopPropagation();
+              openComposer({
+                replyTo: {
+                  uri: post.uri,
+                  cid: post.cid,
+                  text: text.toString(),
+                  author: {
+                    handle: post.author.handle,
+                    displayName: post.author.displayName,
+                    avatar: post.author.avatar,
+                  },
+                },
+              });
+            }}
+            className="hover:text-primary text-skin-icon-muted"
+          >
+            <BiMessageRounded className="text-xl" />
+          </Button>
+          <Dropdown>
+            <Dropdown.Trigger>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className={
+                  reposted
+                    ? "text-skin-icon-repost"
+                    : "text-skin-icon-muted hover:text-skin-icon-repost"
+                }
+              >
+                <BiRepost className="text-2xl" />
+              </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Menu>
+              <Dropdown.MenuItem
+                onSelect={() => {
+                  toggleRepost.mutate();
+                }}
+                text={`${reposted ? "Undo repost" : "Repost"}`}
+                icon={<BiRepost />}
+              />
+              <Dropdown.MenuItem
+                onSelect={() => {
+                  openComposer({
+                    quote: {
+                      uri: post.uri,
+                      cid: post.cid,
+                      text: text.toString(),
+                      indexedAt: post.indexedAt,
+                      author: {
+                        did: post.author.did,
+                        handle: post.author.handle,
+                        displayName: post.author.displayName,
+                        avatar: post.author.avatar,
+                      },
+                    },
+                  });
+                }}
+                text="Quote Post"
+                icon={<BiSolidQuoteAltRight />}
+              />
+            </Dropdown.Menu>
+          </Dropdown>
+          
+          <Dropdown>
+            <Dropdown.Trigger>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                className="text-skin-icon-muted hover:text-skin-base"
+              >
+                <BiDotsHorizontalRounded className="text-xl" />
+              </Button>
+            </Dropdown.Trigger>
+            <Dropdown.Menu>
+              {text && (
+                <Dropdown.MenuItem
+                  onSelect={handleTranslation}
+                  text="Translate"
+                  icon={<MdOutlineTranslate />}
+                />
+              )}
+              <Dropdown.MenuItem
+                onSelect={handleShare}
+                text="Copy Link to Post"
+                icon={<MdIosShare />}
+              />
+              {text && (
+                <Dropdown.MenuItem
+                  onSelect={handleCopyPostText}
+                  text="Copy Post Text"
+                  icon={<BiSolidCopy />}
+                />
+              )}
+              {session.user?.handle !== post.author.handle && (
+                <Dropdown.MenuItem
+                  onSelect={() => {
+                    toggleMuteUser.mutate();
+                  }}
+                  text={`${muted ? "Unmute User" : "Mute User"}`}
+                  icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
+                />
+              )}
+              {session.user?.handle === post.author.handle && (
+                <Dropdown.MenuItem
+                  onSelect={() => {
+                    deletePost.mutate();
+                  }}
+                  text="Delete Post"
+                  icon={<BiSolidTrash />}
+                />
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+      </>
+    )
+  }
 
   if (mode === "thread") {
     return (
@@ -111,7 +255,7 @@ export default function PostActions(props: Props) {
             )}
           </div>
         )}
-        <div className="mt-3 flex justify-between">
+        <div className={`mt-3 flex justify-between`}>
           <Button
             disabled={post.viewer?.replyDisabled}
             onClick={(e) => {
