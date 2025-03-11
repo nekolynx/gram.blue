@@ -17,7 +17,7 @@ export default function ThemeProvider(props: Props) {
 
   if (isClient) {
     return (
-      <Provider attribute="data-theme" disableTransitionOnChange={true}>
+      <Provider attribute="data-theme" disableTransitionOnChange={true} defaultTheme = '2012'>
         {children}
       </Provider>
     );

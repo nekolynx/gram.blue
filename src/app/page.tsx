@@ -30,7 +30,7 @@ export default function Home() {
             Browse Bluesky with your nostalgia goggles on!
           </h1>
           
-          <ul className="animate-fade animate-delay-165 text-skin-secondary mt-5 text-lg font-light">
+          <ul className="animate-fade animate-delay-165 text-skin-secondary mt-5 text-lg font-regular">
             <li>Available in 2 styles (2012 & 2015)</li>
             <li>Enhanced features</li>
             <li>Open-source</li>
