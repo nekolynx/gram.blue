@@ -24,8 +24,8 @@
         --color-text-secondary: 115, 115, 115; /* text-neutral-500 */
         --color-text-tertiary: 163, 163, 163; /* text-neutral-400 */
         --color-text-base-inverted: 255, 255, 255; /* text-white */
-        --color-text-link-base: 81, 127, 164 /* primary */
-        --color-text-link-base-hover: 48, 96, 136; /* primary-dark */
+        --color-text-link-base: 17, 86, 136;; /* primary */
+        --color-text-link-base-hover: 81, 127, 164; /* primary-dark */
 
         /* Border and outline */
         --color-border-base: 229, 229, 229; /* border-neutral-200 */
@@ -66,8 +66,8 @@
         --color-text-secondary: 115, 115, 115; /* text-neutral-500 */
         --color-text-tertiary: 163, 163, 163; /* text-neutral-400 */
         --color-text-base-inverted: 255, 255, 255; /* text-white */
-        --color-text-link-base: 81, 127, 164 /* primary */
-        --color-text-link-base-hover: 48, 96, 136; /* primary-dark */
+        --color-text-link-base: 17, 86, 136;; /* primary */
+        --color-text-link-base-hover: 81, 127, 164; /* primary-dark */
 
         /* Border and outline */
         --color-border-base: 229, 229, 229; /* border-neutral-200 */
@@ -125,6 +125,7 @@
 
 #homeAbout {background-image: linear-gradient(#fff,rgb(var(--color-background-base)));position: relative;}
 .homeBannerButton {color:#fff}
+a.text-skin-link-base {font-weight: 600;max-width: 75vw;white-space: nowrap;overflow: clip;text-overflow: ellipsis;}
 
 [data-theme="2012"] {
     .appTop, .homepageBanner {background: linear-gradient( #517fa4, #306088);}
