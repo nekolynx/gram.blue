@@ -38,7 +38,8 @@ export default function Badge(props: Props) {
 
   return (
     <div
-      className={`${calculatedPosition} ${calculatedVariant} bg-primary animate-fade animate-duration-300 rounded-full text-xs font-bold text-white`}
+      className={`${calculatedPosition} ${calculatedVariant} bg-red animate-fade animate-duration-300 rounded-full text-xs font-bold text-white`}
+      style={{background: "orangered"}}
     >
       {children}
     </div>
