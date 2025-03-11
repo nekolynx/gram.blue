@@ -1,6 +1,6 @@
 "use client";
 
-import FeedPost from "../feedPost/FeedPost";
+import FeedPostReply from "../feedPost/FeedPostReply";
 import { getPost } from "@/lib/api/bsky/feed";
 import { AppBskyFeedDefs } from "@atproto/api";
 import { ContentFilterResult } from "../../../../types/feed";
@@ -34,7 +34,7 @@ export default function NotificationPost(props: Props) {
     <>
       {isLoading && <NotificationPostSkeleton />}
       {post?.data && (
-        <FeedPost
+        <FeedPostReply
           post={post.data.thread as AppBskyFeedDefs.FeedViewPost}
           filter={filter}
         />

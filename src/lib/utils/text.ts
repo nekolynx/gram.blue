@@ -42,6 +42,8 @@ export function getNotificationLabel(reason: string) {
       return "followed you";
     case "repost":
       return "reposted your post";
+    case "reply":
+      return "replied to your post"
     default:
       return "";
   }
