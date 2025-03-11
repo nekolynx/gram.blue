@@ -6,17 +6,18 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   iconColor?: string;
   iconSize?: string;
   className?: string;
+  justify?: "center" | "start" | "end" | "between" | "inherit";
 }
 
 export default forwardRef<HTMLButtonElement, Props>(
   function Button(props, ref) {
-    const { children, icon, iconColor, iconSize, color, className, ...rest } =
+    const { children, icon, iconColor, iconSize, color, className, justify="center", ...rest } =
       props;
 
     return (
       <button
         ref={ref}
-        className={`flex items-center justify-center gap-1 disabled:cursor-not-allowed ${
+        className={`flex items-center justify-${justify} gap-1 disabled:cursor-not-allowed ${
           className
             ? className
             : "text-skin-secondary border-skin-base bg-skin-secondary rounded-lg border p-2 text-sm font-medium hover:brightness-95"
