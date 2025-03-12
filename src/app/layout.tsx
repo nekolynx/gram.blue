@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: { template: "%s — gram.blue", default: "gram.blue" },
   description: "Your friendly Bluesky client for the web",
-  metadataBase: new URL("https://useouranos.app"),
+  metadataBase: new URL("https://gram.blue"),
   other: {
     "fc:frame": "vNext",
     "of:version": "vNext",
