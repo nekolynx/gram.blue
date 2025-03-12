@@ -19,12 +19,24 @@ import { useRouter } from "next/navigation";
 import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
 import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
 import { FaPlus } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
   isParent?: boolean;
   isReply?: boolean;
   filter: ContentFilterResult;
+}
+
+export function StrangerDanger(props: Props) {
+  const { post, filter } = props;
+  const { author } = post.post;
+  const { data: session } = useSession();
+  return (
+    <>
+      {(!author.viewer?.following && author.handle !== session?.user?.handle) && <FaPlus className="absolute bottom-0 right-0 bg-skin-inverted text-skin-inverted rounded-full p-1"/>}
+    </>
+  )
 }
 
 export default function FeedPost(props: Props) {
@@ -116,7 +128,9 @@ export default function FeedPost(props: Props) {
         <PostEmbed content={post.post.embed} depth={0} />
       )}
       </div>
-      <PostActions post={post.post} mode="reply" />
+      <div style={{paddingLeft: "1.75rem"}}>
+        <PostActions post={post.post} mode="reply" />
+      </div>
     </article>
 
     :
@@ -149,7 +163,7 @@ export default function FeedPost(props: Props) {
                 size="sm"
               />
             </ProfileHoverCard>
-            {!author.viewer?.following && <FaPlus className="absolute bottom-0 right-0 bg-skin-inverted text-skin-inverted rounded-full p-1"/>}
+            <StrangerDanger post={post} filter={filter}/>
           </div>
           <div className="flex items-center w-full">
             <Link
