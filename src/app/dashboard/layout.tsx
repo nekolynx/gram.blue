@@ -28,7 +28,7 @@ export default async function DashboardLayout({
         <SidePanel />
         <section className="w-full md:max-w-xl">
           {profile && <TopBar profile={profile} />}
-          <div className="bg-skin-secondary md:rounded-t-2xl">
+          <div className="bg-skin-secondary md:rounded-2xl">
           {children}
           </div>
         </section>
