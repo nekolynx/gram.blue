@@ -85,6 +85,7 @@ export default function PostActions(props: Props) {
             ) : (
               <BiHeart className="text-xl" />
             )}
+            {likeCount}
           </Button>
           <Button
             disabled={post.viewer?.replyDisabled}
@@ -106,6 +107,7 @@ export default function PostActions(props: Props) {
             className="hover:text-primary text-skin-icon-muted"
           >
             <BiMessageRounded className="text-xl" />
+            {post.replyCount! > 0 ? post.replyCount : <></>}
           </Button>
           <Dropdown>
             <Dropdown.Trigger>
@@ -120,6 +122,7 @@ export default function PostActions(props: Props) {
                 }
               >
                 <BiRepost className="text-2xl" />
+                {repostCount + quoteCount > 0 ? repostCount+quoteCount : <></>}
               </Button>
             </Dropdown.Trigger>
             <Dropdown.Menu>
