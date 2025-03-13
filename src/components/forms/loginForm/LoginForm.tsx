@@ -81,35 +81,27 @@ export default function LoginForm() {
   return (
     <section className="bg-skin-base border border-skin-base max-w-xs rounded-2xl p-5 shadow-2xl shadow-primary-light/30">
       <Image
-        src="/gramblueText.svg"
+        src="/icon.png"
         alt="gram.blue logo"
-        width={150}
-        height={50}
+        width={70}
+        height={70}
         className="mx-auto mb-3"
+        style={{marginTop: "-70px"}}
       />
-      <h1 className="text-skin-base mb-1 text-xl font-semibold">Welcome</h1>
-      <p className="text-skin-secondary mb-3 text-sm font-medium">
-        We recommend using an{" "}
-        <Link
-          href="https://bsky.app/settings/app-passwords"
-          target="_blank"
-          className="text-skin-link-base hover:text-skin-link-hover"
-        >
-          app password
-        </Link>{" "}
-        to log in.
-      </p>
+      <h1 className="text-skin-base text-center mb-1 text-xl font-semibold">Welcome</h1>
+      
       <form
-        className="mt-5 text-sm font-medium"
+        className="mt-5 font-medium"
         onSubmit={(e) => {
           e.preventDefault();
           handleSignIn();
         }}
       >
         <span>
-          <Label htmlFor="handle">Handle</Label>
+          <Label htmlFor="handle" className="font-semibold">Handle</Label>
           <Input
             required
+            style={{fontSize:"16px"}}
             type="text"
             name="handle"
             icon={<MdAlternateEmail />}
@@ -122,9 +114,10 @@ export default function LoginForm() {
           />
         </span>
         <span className="mt-3 block">
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password" className="font-semibold">Password</Label>
           <Input
             required
+            style={{fontSize:"16px"}}
             type="password"
             name="password"
             icon={<BiSolidLockAlt />}
@@ -141,6 +134,17 @@ export default function LoginForm() {
             {error}
           </small>
         )}
+        <p className="text-skin-secondary mb-3 mt-2 text-sm leading-1 px-1 font-medium">
+          We recommend using an{" "}
+          <Link
+            href="https://bsky.app/settings/app-passwords"
+            target="_blank"
+            className="text-skin-link-base hover:text-skin-link-hover"
+          >
+            app password
+          </Link>{" "}
+          to log in.
+        </p>
         <Button
           type="submit"
           className={`text-skin-inverted bg-skin-inverted hover:bg-skin-inverted ml-auto mt-5 flex w-full items-center justify-center gap-2 rounded-lg px-3 py-3 font-semibold disabled:cursor-not-allowed ${

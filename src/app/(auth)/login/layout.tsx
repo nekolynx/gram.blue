@@ -13,16 +13,10 @@ export default async function InventoryLayout({
 }) {
   return (
     <>
-      <main className="relative z-10 min-h-[100svh] flex items-center justify-center animate-fade animate-delay-500 animate-duration-[600ms]">
+      <main className="relative z-10 min-h-[100svh] flex items-center justify-center">
+        <div className="absolute top-0 left-0 right-0 bg-primary homepageBanner" style={{height: "280px", zIndex: "-1"}}></div>
         {children}
       </main>
-      <Image
-        src="/images/loginBackground.svg"
-        alt="background image"
-        width={1000}
-        height={200}
-        className="z-0 fixed bottom-0 w-screen h-[50svh] object-cover animate-fade-up animate-delay-0 animate-duration-[900ms]"
-      />
     </>
   );
 }

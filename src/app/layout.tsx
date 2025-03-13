@@ -47,6 +47,7 @@ export default async function RootLayout({
       <head>
         {/* for making the page fullscreen on iOS when added to home */}
         <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       </head>
       <body className={inter.className}>
         <ThemeProvider>
