@@ -125,7 +125,7 @@
 
 #homeAbout {background-image: linear-gradient(#fff,rgb(var(--color-background-base)));position: relative;}
 .homeBannerButton {color:#fff}
-a.text-skin-link-base {font-weight: 600;max-width: 75vw;white-space: nowrap;overflow: clip;text-overflow: ellipsis;}
+a.text-skin-link-base {font-weight: 600;max-width: 75vw;white-space: nowrap;overflow-x: clip;text-overflow: ellipsis;}
 
 [data-theme="2012"] {
     .appTop, .homepageBanner {background: linear-gradient( #517fa4, #306088);}
