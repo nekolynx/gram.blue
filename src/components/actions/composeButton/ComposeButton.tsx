@@ -2,6 +2,7 @@
 
 import { useComposerControls } from "@/app/providers/composer";
 import { useScrollContext } from "@/app/providers/scroll";
+import IconCompose from "@/assets/icons/IconCompose";
 import { usePathname } from "next/navigation";
 import { RiQuillPenFill } from "react-icons/ri";
 
@@ -43,7 +44,7 @@ export default function ComposeButton(props: Props) {
       onClick={() => openComposer({ mention: userHandle })}
       className={className + ` ${fullWidth && "w-full justify-center"} bg-primary text-skin-inverted flex items-center gap-2 ${rounded && "rounded-full"} font-semibold hover:brightness-95 ${!fullWidth && "p-2 lg:px-3 lg:py-2"}`}
     >
-      <RiQuillPenFill className="text-skin-icon-inverted text-2xl" />
+      <IconCompose className="text-skin-icon-inverted text-2xl" />
       <span className="text-skin-icon-inverted hidden lg:inline">Post</span>
     </button>
   );

@@ -50,8 +50,8 @@ export default function Navbar() {
       />
       <NavItem
         href="/dashboard/search"
-        icon={<PiMagnifyingGlassBold className="text-xl md:text-xl" />}
-        activeIcon={<PiMagnifyingGlassFill className="text-xl md:text-xl" />}
+        icon={<PiMagnifyingGlassBold className="text-xl md:text-2xl" />}
+        activeIcon={<PiMagnifyingGlassFill className="text-xl md:text-2xl" />}
         title="Search"
         isActive={pathname.includes("search")}
         colorActive={classActive}
