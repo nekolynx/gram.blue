@@ -156,7 +156,7 @@ export default function LoginForm() {
         </Button>
       </form>
       <hr className="border-black/20 my-6 px-3" />
-      <p className="my-3 text-center">Don't have an account?</p>
+      <p className="my-3 text-center">Don&apos;t have an account?</p>
       <Link
         type="button"
         className="text-skin-base bg-skin-muted/70 hover:bg-skin-inverted ml-auto mt-5 flex w-full items-center justify-center gap-2 rounded-lg px-3 py-3 font-semibold"
