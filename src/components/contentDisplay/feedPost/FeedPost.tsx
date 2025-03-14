@@ -205,7 +205,7 @@ export default function FeedPost(props: Props) {
             <PostEmbed content={post.post.embed} depth={0} />
           )}
           {post.post.embed == null && (
-              <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center" style={{minHeight: "40vh", padding: "3rem"}}>
+              <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[35vh] p-[3rem]">
                 <span className="absolute text-xl top-3 left-3 opacity-25">&ldquo;</span>
                 <PostText record={post.post.record} />
                 <div className="font-semibold text-primary mt-3">&mdash;{author.displayName}</div>
@@ -216,7 +216,7 @@ export default function FeedPost(props: Props) {
           </div>
           <PostActionsBy post={post.post}/>
           {post.post.embed != null && (
-            <div className="p-3">
+            <div className="px-3 py-0.5">
               <Link href={`/dashboard/user/${author.handle}`}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;
               <PostText record={post.post.record} />
             </div>
