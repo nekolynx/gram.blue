@@ -45,9 +45,14 @@
         --color-status-warning: 234, 88, 12; /* text-orange-600 */
         --color-status-danger: 220, 38, 38; /* text-red-600 */
     }
+    [data-theme="2012"] {
+        --color-primary: 81, 127, 164;
+    }
+    [data-theme="2015"] {
+        --color-primary: 17, 86, 136;
+    }
     [data-theme="2015"],[data-theme="2012"] {
         /* Brand */
-        --color-primary: 17, 86, 136;
         --color-primary-light: 81, 127, 164;
         --color-primary-dark: 48, 96, 136;
 
