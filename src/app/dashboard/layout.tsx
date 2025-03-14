@@ -24,6 +24,7 @@ export default async function DashboardLayout({
   return (
     <AgentProvider session={session}>
       <main className="bg-skin-base flex justify-center gap-6 pb-20 md:mt-6 lg:gap-16 animate-fade">
+        <div className="fixed h-[30vh] z-[-1] w-full top-0 left-0 right-0 bg-[#333]"/>
         {profile && <Composer author={profile} />}
         <SidePanel />
         <section className="w-full md:max-w-xl">

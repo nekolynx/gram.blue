@@ -172,3 +172,11 @@ a.text-skin-link-base {font-weight: 600;max-width: 75vw;white-space: nowrap;over
     }
     
 }
+
+html[data-theme="2012"].bg-skin-base,
+[data-theme="2012"] div.bg-skin-base.fixed.top-0.z-40,
+[data-theme="2012"] main.bg-skin-base {
+    background-image: url(/images/noise.png);
+    background-size: 480px;
+    background-attachment: fixed;
+}

@@ -33,7 +33,7 @@ export default function FeedTabs() {
 
   return (
     <>
-      <div className="bg-skin-base fixed top-0 z-40 hidden w-full max-w-xl md:block md:p-5 lg:p-5" />
+      <div className="bg-[#333] fixed top-0 z-40 hidden w-full max-w-xl md:block md:p-5 lg:p-5" />
       <div
         className={`bg-skin-tertiary border-skin-base sticky top-[3.2rem] z-50 overflow-x-hidden border-x-0 border-b border-t-0 transition-all ease-linear hover:overflow-x-auto md:top-6 md:z-50 md:rounded-t-2xl md:border md:opacity-100`}
         style={{
