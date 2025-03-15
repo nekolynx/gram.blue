@@ -52,7 +52,7 @@ export default function GifEmbed(props: Props) {
         autoPlay
         onCanPlayThrough={handleCanPlayThrough}
         onPlaying={handleOnPlaying}
-        className={`rounded-md group-hover:brightness-90 ${
+        className={`gif ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
       />
