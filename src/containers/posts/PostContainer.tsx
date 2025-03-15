@@ -29,7 +29,6 @@ const PostContainer = memo(function PostContainer(props: Props) {
           filter={filter}
         />
       : 
-      <div className="border-skin-base flex flex-col justify-between border border-x-0 first:border-t-0 last:border-b md:border-x odd:[&:not(:last-child)]:border-b-0 even:[&:not(:last-child)]:border-b-0">
         {parent?.post && !post.reason && !mediaOnly && (
           <FeedPost
             post={parent}
