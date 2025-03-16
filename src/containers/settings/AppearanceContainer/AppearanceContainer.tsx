@@ -1,6 +1,7 @@
 "use client";
 
 import { THEMES } from "@/lib/store/local";
+import { PROFILEMODE } from "@/lib/store/local";
 import { useTheme } from "next-themes";
 
 import { ReactNode } from "react";
@@ -8,6 +9,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/inputs/toggleGroup/ToggleGroup";
+import React from "react";
 
 interface ItemProps {
   item: string;
@@ -31,6 +33,7 @@ export default function AppearanceContainer() {
   const { theme, setTheme } = useTheme();
   const defaultTheme = THEMES[0].value;
   const isDefaultTheme = theme === "system";
+  const [profileMode, setProfileMode] = React.useState( localStorage.getItem("profileMode") == null ? PROFILEMODE[0].value : localStorage.getItem("profileMode") );
 
   return (
     <section className="flex flex-col gap-5">
@@ -62,6 +65,28 @@ export default function AppearanceContainer() {
             </ToggleGroup>
           </Item>
         )}
+        <Item item={"Profile Display Style"}>
+          <ToggleGroup
+            type="single"
+            //defaultValue={localStorage.getItem("profileMode")}
+            value={profileMode}
+            onValueChange={(value: string) => {
+              if(!value) return;
+              setProfileMode(value);
+              localStorage.setItem("profileMode",value);
+            }}
+          >
+            {PROFILEMODE.map((item) => (
+              <ToggleGroupItem
+                key={item.value}
+                type="button"
+                value={item.value}
+                >
+                  {item.label}
+                </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </Item>
       </div>
     </section>
   );

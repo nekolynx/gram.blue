@@ -46,3 +46,8 @@ interface Theme {
   label: string;
   value: string;
 }
+
+interface ProfileMode {
+  label: string;
+  value: string;
+}
