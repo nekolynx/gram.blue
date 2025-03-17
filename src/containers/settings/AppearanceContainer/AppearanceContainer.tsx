@@ -69,7 +69,7 @@ export default function AppearanceContainer() {
           <ToggleGroup
             type="single"
             //defaultValue={localStorage.getItem("profileMode")}
-            value={profileMode}
+            value={profileMode?.toString()}
             onValueChange={(value: string) => {
               if(!value) return;
               setProfileMode(value);
