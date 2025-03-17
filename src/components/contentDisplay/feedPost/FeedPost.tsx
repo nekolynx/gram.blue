@@ -20,6 +20,8 @@ import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
 import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
 import { FaPlus } from "react-icons/fa";
 import { useSession } from "next-auth/react";
+import { IoMdClock } from "react-icons/io";
+import PostEmbedPlaceholder from "@/components/dataDisplay/postEmbed/PostEmbedPlaceholder";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -49,6 +51,7 @@ export default function FeedPost(props: Props) {
   const notFound = post.post.viewer === undefined;
   const isAuthorMuted = !notFound && post.post.author?.viewer?.muted;
   const [showPost, setShowPost] = useState(!isAuthorMuted);
+  const bgPattern = "";
 
   if (notFound) {
     return (
@@ -184,14 +187,14 @@ export default function FeedPost(props: Props) {
             <span className="grow"/>
             <span className="text-skin-tertiary whitespace-nowrap font-medium">
               <Link href={`/dashboard/user/${post.post.author.handle}/post/${getPostId(post.post.uri,)}`}
-                className="cursor-pointer"
+                className="cursor-pointer flex items-center"
                 onClick={(e) => {e.stopPropagation();}}>
-              {getRelativeTime(indexedAt)}
+              <IoMdClock />&nbsp;{getRelativeTime(indexedAt)}
               </Link>
             </span>
           </div>
         </div>
-        <div className={`${isParent && "pl-8"}`}>
+        <div className={`${isParent ? "pl-8" : ""}`}>
           {isParent && !reason && <Threadline />}
           {showToggle && (
               <PostHider
@@ -201,11 +204,15 @@ export default function FeedPost(props: Props) {
                 showToggle={shouldHide}
               />
           )}
-          {!hidden && post.post.embed && (
+          {!hidden && post.post.embed 
+          ? (
             <PostEmbed content={post.post.embed} depth={0} />
-          )}
+          )
+          :
+            <PostEmbedPlaceholder content={post.post.embed} depth={0} />
+          }
           {post.post.embed == null && (
-              <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[35vh] p-[3rem]">
+              <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[35vh] p-[3rem] quoted-with-the-sauce">
                 <span className="absolute text-xl top-3 left-3 opacity-25">&ldquo;</span>
                 <PostText record={post.post.record} />
                 <div className="font-semibold text-primary mt-3">&mdash;{author.displayName}</div>
