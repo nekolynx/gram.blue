@@ -121,7 +121,7 @@ export default function ProfileHeader(props: Props) {
             </header>
             <div className="mx-3 mb-3 mt-1">
               <div className="flex flex-wrap items-center gap-x-2">
-                <h1 className="text-skin-base break-all text-2xl font-semibold">
+                <h1 className="text-skin-base break-all text-xl font-semibold">
                   {profile.displayName || profile.handle}
                 </h1>
                 <div className="flex flex-wrap gap-1.5">
@@ -184,7 +184,7 @@ export default function ProfileHeader(props: Props) {
               )}
             </div>
 
-            {!hasBlockedYou && <ProfileTabs />}
+            {!hasBlockedYou && <ProfileTabs classicMode={true} />}
           </section>
         )}
       </>

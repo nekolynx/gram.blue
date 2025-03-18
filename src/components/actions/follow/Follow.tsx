@@ -37,7 +37,7 @@ export default function Follow(props: Props) {
           onClick={() => onToggleFollow.mutate()}
           className={className + ` rounded-full px-4 py-2 text-sm font-medium ${
             isFollowing
-              ? "text-skin-base bg-neutral-200 hover:brightness-95"
+              ? "text-skin-base bg-skin-tertiary hover:brightness-95"
               : "bg-lime-500 hover:brightness-95 text-skin-inverted"
           }`}
         >

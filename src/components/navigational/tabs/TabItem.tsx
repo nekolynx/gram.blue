@@ -1,8 +1,9 @@
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
+import { ReactElement } from "react";
 
 interface Props {
-  label: string;
+  label: ReactElement | string;
   path?: string | Url;
   as?: string | Url;
   isActive: boolean;
