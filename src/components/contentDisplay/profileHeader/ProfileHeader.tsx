@@ -102,6 +102,9 @@ export default function ProfileHeader(props: Props) {
                 )}
                 {profile?.viewer && session?.user.handle && (
                   <div className="w-full pr-4 flex gap-1 justify-end">
+                    {handle === session?.user.handle && (
+                      <EditProfile profile={profile} />
+                    )}
                     <Follow
                       onToggleFollow={toggleFollow}
                       author={profile}
@@ -185,6 +188,13 @@ export default function ProfileHeader(props: Props) {
             </div>
 
             {!hasBlockedYou && <ProfileTabs classicMode={true} />}
+
+            {showAvatar && profile.avatar && (
+            <Gallery
+              images={[{ src: profile.avatar }]}
+              onClose={() => setShowAvatar(false)}
+            />
+            )}
           </section>
         )}
       </>
