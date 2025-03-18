@@ -11,11 +11,11 @@ interface Props {
 
 export default function UserStats(props: Props) {
   const { handle, followCount, followerCount, postsCount, classicMode } = props;
-  const uppertext = classicMode ? "flex-col font-bold text-lg items-center" : "gap-1 text-skin-base font-semibold";
+  const uppertext = classicMode ? "flex-col font-bold text-lg items-center min-w-[53pt]" : "gap-1 text-skin-base font-semibold";
   const lowertext = classicMode ? "lowercase text-xs text-skin-tertiary font-semibold" : "text-skin-tertiary font-medium";
 
   return (
-    <div className={`flex flex-wrap items-center gap-x-3 gap-y-1 ` + (classicMode ? "flex-row-reverse w-full p-4" : "" )}>
+    <div className={`flex items-center gap-y-1 ` + (classicMode ? "flex-row-reverse w-full p-4 pl-0" : "gap-x-3 flex-wrap" )}>
       <Link
         href={`/dashboard/user/${handle}/following`}
         className={"flex hover:brightness-110 " + uppertext}

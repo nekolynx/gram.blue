@@ -13,10 +13,11 @@ interface Props {
   author: AppBskyFeedDefs.PostView["author"];
   viewer: ViewerState;
   viewerDID: string;
+  className?: string;
 }
 
 export default function Follow(props: Props) {
-  const { onToggleFollow, author, viewer, viewerDID } = props;
+  const { onToggleFollow, author, viewer, viewerDID, className } = props;
   const isBlocked = viewer.blocking || viewer.blockingByList ? true : false;
   const hasBlockedYou = viewer.blockedBy ? true : false;
   const isFollowing = viewer.following ? true : false;
@@ -34,10 +35,10 @@ export default function Follow(props: Props) {
       {!isBlocked && !hasBlockedYou && (
         <Button
           onClick={() => onToggleFollow.mutate()}
-          className={`rounded-full px-4 py-2 text-sm font-medium ${
+          className={className + ` rounded-full px-4 py-2 text-sm font-medium ${
             isFollowing
-              ? "text-skin-base bg-skin-tertiary hover:brightness-95"
-              : "bg-skin-inverted hover:bg-skin-inverted-muted text-skin-inverted"
+              ? "text-skin-base bg-neutral-200 hover:brightness-95"
+              : "bg-lime-500 hover:brightness-95 text-skin-inverted"
           }`}
         >
           {isFollowing ? (
@@ -52,7 +53,7 @@ export default function Follow(props: Props) {
       {hasBlockedYou && (
         <Button
           disabled={true}
-          className={`rounded-full px-4 py-2 ${
+          className={className + ` rounded-full px-4 py-2 ${
             isFollowing
               ? "bg-skin-tertiary hover:brightness-95"
               : "text-skin-inverted bg-skin-inverted hover:brightness-90"
@@ -67,7 +68,7 @@ export default function Follow(props: Props) {
           onClick={() => {
             toggleBlockUser.mutate();
           }}
-          className="bg-skin-tertiary rounded-full px-4 py-2 text-sm font-medium hover:brightness-95"
+          className={className + " bg-skin-tertiary rounded-full px-4 py-2 text-sm font-medium hover:brightness-95"}
         >
           Unblock
         </Button>
