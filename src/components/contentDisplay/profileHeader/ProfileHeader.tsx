@@ -49,6 +49,69 @@ export default function ProfileHeader(props: Props) {
     contentFilter?.contentFilters.find((item) => item.type === "impersonation")
       ?.visibility === "warn";
 
+  if(localStorage.getItem("profileMode")==="gramblue") {
+    return (
+      <>
+        <section className="overflow-hidden md:rounded-t-2xl">
+          <header className="flex">
+            <div className="p-4 shrink-0">
+              {isBlocked || hasBlockedYou ? (
+                <Image
+                  src={profile?.avatar ?? FallbackAvatar}
+                  alt="Avatar"
+                  width={75}
+                  height={75}
+                  className="bg-skin-base rounded-full border-4 border-transparent object-cover opacity-30 contrast-75"
+                />
+              ) : (
+                <Button
+                  className="bg-skin-secondary rounded-full border-4 border-transparent"
+                  onClick={() => setShowAvatar(true)}
+                >
+                  <Image
+                    src={
+                      profile?.avatar?.replace("avatar", "avatar_thumbnail") ??
+                      FallbackAvatar
+                    }
+                    alt="Avatar"
+                    width={75}
+                    height={75}
+                    priority
+                    className={`rounded-full object-cover ${
+                      profile?.avatar
+                        ? "cursor-pointer hover:brightness-90"
+                        : "cursor-default"
+                    }`}
+                  />
+                </Button>
+              )}
+            </div>
+            <div className="w-full">
+              {profile?.handle && (
+                <UserStats
+                  handle={profile?.handle}
+                  followerCount={profile?.followersCount ?? 0}
+                  followCount={profile?.followsCount ?? 0}
+                  postsCount={profile.postsCount ?? 0}
+                  classicMode={true}
+                />
+              )}
+              {profile?.viewer && session?.user.handle && (
+                <Follow
+                  onToggleFollow={toggleFollow}
+                  author={profile}
+                  viewer={profile.viewer}
+                  viewerDID={session?.user.id}
+                  
+                />
+              )}
+            </div>
+          </header>
+        </section>
+      </>
+    )
+  }
+
   return (
     <>
       {(isLoading || (isFetching && !isRefetching)) && (
@@ -56,7 +119,7 @@ export default function ProfileHeader(props: Props) {
       )}
       {profile && contentFilter && (
         <section className="border-skin-base overflow-hidden border-0 md:border-y border-b md:rounded-t-2xl md:border-x">
-          <div className="relative">
+          <div className="relative bg-[#ddd]">
             {isBlocked || hasBlockedYou ? (
               <Image
                 src={profile?.banner ?? FallbackBanner}
@@ -97,7 +160,7 @@ export default function ProfileHeader(props: Props) {
                 />
               ) : (
                 <Button
-                  className="bg-skin-base rounded-full border-4 border-transparent"
+                  className="bg-skin-secondary rounded-full border-4 border-transparent"
                   onClick={() => setShowAvatar(true)}
                 >
                   <Image
