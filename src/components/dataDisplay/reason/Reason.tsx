@@ -27,9 +27,9 @@ export default function Reason(props: Props) {
           onClick={(e) => e.stopPropagation()}
           className="max-w-fit"
         >
-          <div className="px-3 bg-skin-inverted text-skin-inverted hover:bg-primary inline-flex flex-wrap items-center gap-1 text-lg font-semibold">
+          <div className="px-3 py-1.5 mb-1 bg-skin-inverted text-skin-inverted hover:bg-primary inline-flex flex-wrap items-center gap-1 text-lg font-semibold ">
             <BiRepost />
-            <small>{reason.by.displayName || reason.by.handle} reposted</small>
+            <small className="leading-[0.75]">{reason.by.displayName || reason.by.handle} reposted</small>
           </div>
         </Link>
       )}
