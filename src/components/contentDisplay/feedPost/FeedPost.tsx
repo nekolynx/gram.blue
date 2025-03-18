@@ -219,10 +219,10 @@ export default function FeedPost(props: Props) {
                 <div className="font-semibold text-primary mt-3">&mdash;{author.displayName}</div>
               </div>
           )}
-          <div className="py-3 mx-3 border border-t-0 border-x-0 border-skin-base" style={{fontSize: "2em"}}>
+          <div className="py-3 mx-3 border border-t-0 border-x-0 border-skin-base text-[2em]">
             <PostActions post={post.post} />
           </div>
-          <PostActionsBy post={post.post}/>
+          <PostActionsBy post={post.post} className="px-3 pt-3"/>
           {post.post.embed != null && (
             <div className="px-5 py-0.5 ml-3 relative">
               <RiChat1Fill className="absolute top-[5pt] left-0 text-[11pt] text-skin-tertiary"/>

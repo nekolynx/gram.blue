@@ -13,6 +13,7 @@ import PostHider from "@/components/dataDisplay/postHider/PostHider";
 import Link from "next/link";
 import { getThreadPostFilter } from "@/lib/utils/feed";
 import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
+import PostActionsBy from "@/components/dataDisplay/postActions/PostActionsBy";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -70,7 +71,6 @@ export default function ThreadPost(props: Props) {
         </div>
       </div>
       <div className="mt-3">
-        <PostText record={post.record} mode="thread" />
         {showToggle && (
           <div className="my-2">
             <PostHider
@@ -82,12 +82,24 @@ export default function ThreadPost(props: Props) {
           </div>
         )}
         {!hidden && post.embed && <PostEmbed content={post.embed} depth={0} />}
-        <div className="text-sm text-skin-tertiary mt-3 font-medium">
-          {getFormattedDate(post.indexedAt)}
-        </div>
+        {post.embed == null && (
+            <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[35vh] p-[3rem] quoted-with-the-sauce">
+              <span className="absolute text-xl top-3 left-3 opacity-25">&ldquo;</span>
+              <PostText record={post.record} />
+              <div className="font-semibold text-primary mt-3">&mdash;{author.displayName}</div>
+            </div>
+        )}
       </div>
-      aaa
-      <PostActions post={post} mode="thread" />
+      <div className="py-3 border border-t-0 border-x-0 border-skin-base text-[2em]">
+        <PostActions post={post} mode="thread" />
+      </div>
+      <PostActionsBy post={post} className="pt-3"/>
+      <div className="text-sm text-skin-tertiary mt-1 font-medium">
+          {getFormattedDate(post.indexedAt)}
+      </div>
+      {post.embed != null && (
+        <PostText record={post.record} mode="thread" />
+      )}
     </article>
   );
 }
