@@ -25,6 +25,9 @@ export default function PostThumbnail(props: Props) {
     else if(AppBskyEmbedVideo.isView(content)) {
         return <div style={{backgroundImage: `url(${content.thumbnail})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center"/>
     }
+    else if(AppBskyEmbedRecordWithMedia.isView(content)) {
+        return <div style={{backgroundImage: `url(${content.media.images[0].thumb})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center"/>
+    }
   };
 
   const chosenEmbed = getEmbed(content);

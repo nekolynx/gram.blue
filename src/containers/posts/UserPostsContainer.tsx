@@ -65,14 +65,15 @@ export default function UserPostsConatiner(props: Props) {
         hasMore={userPostsHasNextPage}
         loader={<LoadingSpinner />}
         scrollThreshold={0.8}
-        className="no-scrollbar"
+        className={`${mode==="media" ? "grid gap-1" : " "} no-scrollbar`}
+        style={{gridTemplateColumns: mode==="media" ? "33% 33% 33%" : "100%"}}
       >
         {!isBlocked &&
           !hasBlockedYou &&
           userPostsData &&
           contentFilter &&
           userPostsData?.pages.map((page, i) => (
-            <div key={i} className={`${mode==="media" ? "grid gap-1" : " "}`} style={{gridTemplateColumns: mode==="media" ? "33% 33% 33%" : "100%"}}>
+            <>
               {mode === "posts" &&
                 page.data.feed
                   .filter((post) => !post.reply)
@@ -94,7 +95,7 @@ export default function UserPostsConatiner(props: Props) {
                     mediaOnly={mode==="media"}
                   />
                 ))}
-            </div>
+            </>
           ))}
       </InfiniteScroll>
 
