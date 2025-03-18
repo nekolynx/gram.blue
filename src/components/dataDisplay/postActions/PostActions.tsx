@@ -27,6 +27,7 @@ import {
 } from "react-icons/bi";
 import { getTranslateLink } from "@/lib/utils/text";
 import { MdOutlineTranslate, MdIosShare } from "react-icons/md";
+import { RiChat1Line, RiHeartFill, RiHeartLine } from "react-icons/ri";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -81,9 +82,9 @@ export default function PostActions(props: Props) {
             }
           >
             {liked ? (
-              <BiSolidHeart className="text-xl" />
+              <RiHeartFill className="text-xl" />
             ) : (
-              <BiHeart className="text-xl" />
+              <RiHeartLine className="text-xl" />
             )}
             {likeCount}
           </Button>
@@ -106,7 +107,7 @@ export default function PostActions(props: Props) {
             }}
             className="hover:text-primary text-skin-icon-muted"
           >
-            <BiMessageRounded className="text-xl" />
+            <RiChat1Line className="text-xl" />
             {post.replyCount! > 0 ? post.replyCount : <></>}
           </Button>
           <Dropdown>
@@ -211,7 +212,7 @@ export default function PostActions(props: Props) {
       </>
     )
   }
-
+/*
   if (mode === "thread") {
     return (
       <div>
@@ -278,7 +279,7 @@ export default function PostActions(props: Props) {
             }}
             className="hover:text-primary text-skin-icon-muted"
           >
-            <BiMessageRounded className="text-xl" />
+            <RiChat1Line className="text-xl" />
           </Button>
           <Dropdown>
             <Dropdown.Trigger>
@@ -397,7 +398,7 @@ export default function PostActions(props: Props) {
       </div>
     );
   }
-
+*/
   return (
     <div className="flex gap-2">
       <Button
@@ -413,9 +414,9 @@ export default function PostActions(props: Props) {
           `}
       >
         {liked ? (
-          <BiSolidHeart className="" />
+          <RiHeartFill className="" />
         ) : (
-          <BiHeart className="" />
+          <RiHeartLine className="" />
         )}
         <span className="hidden">{likeCount > 0 && abbreviateNumber(likeCount)}</span>
       </Button>
@@ -439,7 +440,7 @@ export default function PostActions(props: Props) {
         }}
         className="hover:text-primary text-skin-icon-muted font-medium"
       >
-        <BiMessageRounded className="" />
+        <RiChat1Line className="" />
         <span className="hidden">{post.replyCount ? abbreviateNumber(post.replyCount) : null}</span>
       </Button>
 

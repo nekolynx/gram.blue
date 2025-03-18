@@ -7,7 +7,7 @@ import {
   AppBskyFeedDefs,
   AppBskyEmbedVideo,
 } from "@atproto/api";
-import Image from "next/image";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
 
 interface Props {
   content: AppBskyFeedDefs.FeedViewPost["post"]["embed"];
@@ -20,9 +20,7 @@ export default function PostEmbedPlaceholder(props: Props) {
   const getEmbed = (content: AppBskyFeedDefs.FeedViewPost["post"]["embed"]) => {
     if (AppBskyEmbedImages.isView(content)) {
       return ( 
-        <>
         <canvas width={content.images[0].aspectRatio?.width} height={content.images[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>
-        </>
     );
     } else if (AppBskyGraphDefs.isStarterPackViewBasic(content?.record)) {
       return <>StarterPack</>;
@@ -40,7 +38,7 @@ export default function PostEmbedPlaceholder(props: Props) {
       );
     } else if (AppBskyEmbedVideo.isView(content)) {
       return (
-        <>VideoEmbed</>
+        <canvas width={content.aspectRatio?.width} height={content.aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>
       );
     }
   };

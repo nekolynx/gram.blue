@@ -45,14 +45,9 @@
         --color-status-warning: 234, 88, 12; /* text-orange-600 */
         --color-status-danger: 220, 38, 38; /* text-red-600 */
     }
-    [data-theme="2012"] {
-        --color-primary: 81, 127, 164;
-    }
-    [data-theme="2015"] {
-        --color-primary: 17, 86, 136;
-    }
     [data-theme="2015"],[data-theme="2012"] {
         /* Brand */
+        --color-primary: 17, 86, 136;
         --color-primary-light: 81, 127, 164;
         --color-primary-dark: 48, 96, 136;
 
@@ -130,7 +125,7 @@
 
 #homeAbout {background-image: linear-gradient(#fff,rgb(var(--color-background-base)));position: relative;}
 .homeBannerButton {color:#fff}
-a.text-skin-link-base {font-weight: 600;max-width: 75vw;white-space: nowrap;overflow-x: clip;text-overflow: ellipsis;}
+a.text-skin-link-base {font-weight: 600;max-width: 75vw;white-space: nowrap;overflow-x: clip;text-overflow: ellipsis;display: inline-block;}
 
 [data-theme="2012"] {
     .appTop, .homepageBanner {background: linear-gradient( #517fa4, #306088);}

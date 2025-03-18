@@ -22,6 +22,7 @@ import { FaPlus } from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import { IoMdClock } from "react-icons/io";
 import PostEmbedPlaceholder from "@/components/dataDisplay/postEmbed/PostEmbedPlaceholder";
+import { RiChat1Fill } from "react-icons/ri";
 
 interface Props {
   post: AppBskyFeedDefs.FeedViewPost;
@@ -223,13 +224,14 @@ export default function FeedPost(props: Props) {
           </div>
           <PostActionsBy post={post.post}/>
           {post.post.embed != null && (
-            <div className="px-3 py-0.5">
+            <div className="px-5 py-0.5 ml-3 relative">
+              <RiChat1Fill className="absolute top-[5pt] left-0 text-[11pt] text-skin-tertiary"/>
               <Link href={`/dashboard/user/${author.handle}`}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;
               <PostText record={post.post.record} />
             </div>
           )}
           <Link href={`/dashboard/user/${post.post.author.handle}/post/${getPostId(post.post.uri,)}`}
-                className="cursor-pointer px-3 w-full text-skin-tertiary"
+                className="cursor-pointer px-5 w-full text-skin-tertiary font-medium ml-3"
                 onClick={(e) => {e.stopPropagation();}}>
                   View all {post.post.replyCount} comments.
           </Link>
