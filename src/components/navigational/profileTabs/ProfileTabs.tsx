@@ -16,7 +16,7 @@ export default function ProfileTabs(props: Props) {
   const pathname = usePathname();
   const basePath = pathname.split("/").slice(0, 4).join("/");
   const { data: session } = useSession();
-  const iconClass = "text-2xl";
+  const iconClass = "text-3xl";
 
   if(classicMode) {
     return (
