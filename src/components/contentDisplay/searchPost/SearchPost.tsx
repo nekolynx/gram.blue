@@ -11,6 +11,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { memo } from "react";
 import ProfileHoverCard from "../profileHoverCard/ProfileHoverCard";
+import { useState } from "react";
+import NotFoundEmbed from "@/components/dataDisplay/postEmbed/NotFoundEmbed";
+import PostHider from "@/components/dataDisplay/postHider/PostHider";
 
 interface Props {
   post: AppBskyFeedDefs.PostView;
@@ -22,6 +25,35 @@ const SearchPost = memo(function SearchPost(props: Props) {
   const { post } = props;
   const { author, indexedAt } = post;
   const router = useRouter();
+  const notFound = post.viewer === undefined;
+  const isAuthorMuted = !notFound && post.author?.viewer?.muted;
+  const [showPost, setShowPost] = useState(!isAuthorMuted);
+
+  if (notFound) {
+      return (
+        <article>
+          <NotFoundEmbed depth={0} />
+        </article>
+      );
+    }
+  
+  if (!showPost) {
+    return (
+      <article className="p-3">
+        <div className="relative flex items-start gap-3">
+          <Avatar size="md" className="z-20 shrink-0" />
+          <div className={`flex grow flex-col`}>
+            <PostHider
+              message={"Post by muted user"}
+              hidden={true}
+              onToggleVisibility={() => setShowPost(true)}
+              showToggle={true}
+            />
+          </div>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article
