@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-export default function PostActions(props: Props) {
+export default function PostActionsBy(props: Props) {
     const { post, className } = props;
     return(
         <div className={"font-semibold text-primary "+className}>

@@ -34,17 +34,13 @@ interface Props {
   mode?: "thread" | "feed" | "reply";
 }
 
-export default function PostActions(props: Props) {
+function DropdownMenuForPosts(props: Props){
   const { post, mode = "feed" } = props;
   const text = AppBskyFeedPost.isRecord(post.record) && post.record.text;
   const { data: session } = useSession();
   const { deletePost } = useDeletePost({ post: post });
-  const { liked, toggleLike, likeCount } = useLike({ post: post });
-  const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
-  const quoteCount = post.quoteCount ?? 0;
   const { muted, toggleMuteUser } = useMuteUser({ author: post.author });
   const clipboard = useClipboard({ copiedTimeout: 3500 });
-  const { openComposer } = useComposerControls();
 
   const handleShare = useCallback(() => {
     const postId = getPostId(post.uri);
@@ -63,6 +59,82 @@ export default function PostActions(props: Props) {
       window.open(getTranslateLink(text), "_blank");
     }
   }, [text]);
+
+  if (!session) return null;
+
+  return ( 
+    <Dropdown>
+      <Dropdown.Trigger>
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className="text-skin-icon-muted hover:text-skin-base"
+        >
+          <BiDotsHorizontalRounded className="" />
+        </Button>
+      </Dropdown.Trigger>
+      <Dropdown.Menu>
+        {text && (
+          <>
+          <Dropdown.MenuItem
+            onSelect={handleTranslation}
+            text="Translate"
+            icon={<MdOutlineTranslate />}
+          />
+          <hr/>
+          </>
+        )}
+        
+        <Dropdown.MenuItem
+          onSelect={handleShare}
+          text="Copy Link to Post"
+          icon={<MdIosShare />}
+        />
+        {text && (
+          <Dropdown.MenuItem
+            onSelect={handleCopyPostText}
+            text="Copy Post Text"
+            icon={<BiSolidCopy />}
+          />
+        )}
+        {session.user?.handle !== post.author.handle && (
+          <>
+          <hr/>
+          <Dropdown.MenuItem
+            onSelect={() => {
+              toggleMuteUser.mutate();
+            }}
+            text={`${muted ? "Unmute User" : "Mute User"}`}
+            icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
+          />
+          </>
+        )}
+        {session.user?.handle === post.author.handle && (
+          <>
+          <hr/>
+          <Dropdown.MenuItem
+            onSelect={() => {
+              deletePost.mutate();
+            }}
+            text="Delete Post"
+            icon={<BiSolidTrash />}
+          />
+          </>
+        )}
+      </Dropdown.Menu>
+    </Dropdown>
+  )
+}
+
+export default function PostActions(props: Props) {
+  const { post, mode = "feed" } = props;
+  const text = AppBskyFeedPost.isRecord(post.record) && post.record.text;
+  const { data: session } = useSession();
+  const { liked, toggleLike, likeCount } = useLike({ post: post });
+  const { reposted, toggleRepost, repostCount } = useRepost({ post: post });
+  const quoteCount = post.quoteCount ?? 0;
+  const { openComposer } = useComposerControls();
 
   if (!session) return null;
 
@@ -157,248 +229,12 @@ export default function PostActions(props: Props) {
             </Dropdown.Menu>
           </Dropdown>
           
-          <Dropdown>
-            <Dropdown.Trigger>
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                className="text-skin-icon-muted hover:text-skin-base"
-              >
-                <BiDotsHorizontalRounded className="text-xl" />
-              </Button>
-            </Dropdown.Trigger>
-            <Dropdown.Menu>
-              {text && (
-                <Dropdown.MenuItem
-                  onSelect={handleTranslation}
-                  text="Translate"
-                  icon={<MdOutlineTranslate />}
-                />
-              )}
-              <Dropdown.MenuItem
-                onSelect={handleShare}
-                text="Copy Link to Post"
-                icon={<MdIosShare />}
-              />
-              {text && (
-                <Dropdown.MenuItem
-                  onSelect={handleCopyPostText}
-                  text="Copy Post Text"
-                  icon={<BiSolidCopy />}
-                />
-              )}
-              {session.user?.handle !== post.author.handle && (
-                <Dropdown.MenuItem
-                  onSelect={() => {
-                    toggleMuteUser.mutate();
-                  }}
-                  text={`${muted ? "Unmute User" : "Mute User"}`}
-                  icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
-                />
-              )}
-              {session.user?.handle === post.author.handle && (
-                <Dropdown.MenuItem
-                  onSelect={() => {
-                    deletePost.mutate();
-                  }}
-                  text="Delete Post"
-                  icon={<BiSolidTrash />}
-                />
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
+          <DropdownMenuForPosts post={post}/>
         </div>
       </>
     )
   }
-/*
-  if (mode === "thread") {
-    return (
-      <div>
-        {(likeCount > 0 || repostCount > 0) && (
-          <div className="border-skin-base mt-3 flex flex-wrap items-center gap-3 border-y py-2">
-            {repostCount > 0 && (
-              <Link
-                href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-                  post.uri
-                )}/reposted-by`}
-                className="text-skin-base flex gap-1 font-semibold"
-              >
-                {abbreviateNumber(repostCount)}
-                <span className="text-skin-tertiary font-medium">
-                  Repost{repostCount > 1 && "s"}
-                </span>
-              </Link>
-            )}
-            {quoteCount > 0 && (
-              <Link
-                href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-                  post.uri
-                )}/quotes`}
-                className="text-skin-base flex gap-1 font-semibold"
-              >
-                {abbreviateNumber(quoteCount)}
-                <span className="text-skin-tertiary font-medium">
-                  Quote{quoteCount > 1 && "s"}
-                </span>
-              </Link>
-            )}
-            {likeCount > 0 && (
-              <Link
-                href={`/dashboard/user/${post.author.handle}/post/${getPostId(
-                  post.uri
-                )}/liked-by`}
-                className="text-skin-base flex gap-1 font-semibold"
-              >
-                {abbreviateNumber(likeCount)}
-                <span className="text-skin-tertiary font-medium">
-                  Like{likeCount > 1 && "s"}
-                </span>
-              </Link>
-            )}
-          </div>
-        )}
-        <div className={`mt-3 flex justify-between`}>
-          <Button
-            disabled={post.viewer?.replyDisabled}
-            onClick={(e) => {
-              e.stopPropagation();
-              openComposer({
-                replyTo: {
-                  uri: post.uri,
-                  cid: post.cid,
-                  text: text.toString(),
-                  author: {
-                    handle: post.author.handle,
-                    displayName: post.author.displayName,
-                    avatar: post.author.avatar,
-                  },
-                },
-              });
-            }}
-            className="hover:text-primary text-skin-icon-muted"
-          >
-            <RiChat1Line className="text-xl" />
-          </Button>
-          <Dropdown>
-            <Dropdown.Trigger>
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                className={
-                  reposted
-                    ? "text-skin-icon-repost"
-                    : "text-skin-icon-muted hover:text-skin-icon-repost"
-                }
-              >
-                <BiRepost className="text-2xl" />
-              </Button>
-            </Dropdown.Trigger>
-            <Dropdown.Menu>
-              <Dropdown.MenuItem
-                onSelect={() => {
-                  toggleRepost.mutate();
-                }}
-                text={`${reposted ? "Undo repost" : "Repost"}`}
-                icon={<BiRepost />}
-              />
-              <Dropdown.MenuItem
-                onSelect={() => {
-                  openComposer({
-                    quote: {
-                      uri: post.uri,
-                      cid: post.cid,
-                      text: text.toString(),
-                      indexedAt: post.indexedAt,
-                      author: {
-                        did: post.author.did,
-                        handle: post.author.handle,
-                        displayName: post.author.displayName,
-                        avatar: post.author.avatar,
-                      },
-                    },
-                  });
-                }}
-                text="Quote Post"
-                icon={<BiSolidQuoteAltRight />}
-              />
-            </Dropdown.Menu>
-          </Dropdown>
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleLike.mutate();
-            }}
-            className={
-              liked
-                ? "text-skin-icon-like"
-                : "text-skin-icon-muted hover:text-skin-icon-like"
-            }
-          >
-            {liked ? (
-              <BiSolidHeart className="text-xl" />
-            ) : (
-              <BiHeart className="text-xl" />
-            )}
-          </Button>
-          <Dropdown>
-            <Dropdown.Trigger>
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                className="text-skin-icon-muted hover:text-skin-base"
-              >
-                <BiDotsHorizontalRounded className="text-xl" />
-              </Button>
-            </Dropdown.Trigger>
-            <Dropdown.Menu>
-              {text && (
-                <Dropdown.MenuItem
-                  onSelect={handleTranslation}
-                  text="Translate"
-                  icon={<MdOutlineTranslate />}
-                />
-              )}
-              <Dropdown.MenuItem
-                onSelect={handleShare}
-                text="Copy Link to Post"
-                icon={<MdIosShare />}
-              />
-              {text && (
-                <Dropdown.MenuItem
-                  onSelect={handleCopyPostText}
-                  text="Copy Post Text"
-                  icon={<BiSolidCopy />}
-                />
-              )}
-              {session.user?.handle !== post.author.handle && (
-                <Dropdown.MenuItem
-                  onSelect={() => {
-                    toggleMuteUser.mutate();
-                  }}
-                  text={`${muted ? "Unmute User" : "Mute User"}`}
-                  icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
-                />
-              )}
-              {session.user?.handle === post.author.handle && (
-                <Dropdown.MenuItem
-                  onSelect={() => {
-                    deletePost.mutate();
-                  }}
-                  text="Delete Post"
-                  icon={<BiSolidTrash />}
-                />
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-      </div>
-    );
-  }
-*/
+
   return (
     <div className="flex gap-2">
       <Button
@@ -494,58 +330,9 @@ export default function PostActions(props: Props) {
       </Dropdown>
 
       <span className="grow"></span>
-
-      <Dropdown>
-        <Dropdown.Trigger>
-          <Button
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-            className="text-skin-icon-muted hover:text-skin-base"
-          >
-            <BiDotsHorizontalRounded className="" />
-          </Button>
-        </Dropdown.Trigger>
-        <Dropdown.Menu>
-          {text && (
-            <Dropdown.MenuItem
-              onSelect={handleTranslation}
-              text="Translate"
-              icon={<MdOutlineTranslate />}
-            />
-          )}
-          <Dropdown.MenuItem
-            onSelect={handleShare}
-            text="Copy Link to Post"
-            icon={<MdIosShare />}
-          />
-          {text && (
-            <Dropdown.MenuItem
-              onSelect={handleCopyPostText}
-              text="Copy Post Text"
-              icon={<BiSolidCopy />}
-            />
-          )}
-          {session.user?.handle !== post.author.handle && (
-            <Dropdown.MenuItem
-              onSelect={() => {
-                toggleMuteUser.mutate();
-              }}
-              text={`${muted ? "Unmute User" : "Mute User"}`}
-              icon={muted ? <BiSolidBell /> : <BiSolidBellOff />}
-            />
-          )}
-          {session.user?.handle === post.author.handle && (
-            <Dropdown.MenuItem
-              onSelect={() => {
-                deletePost.mutate();
-              }}
-              text="Delete Post"
-              icon={<BiSolidTrash />}
-            />
-          )}
-        </Dropdown.Menu>
-      </Dropdown>
+      
+      <DropdownMenuForPosts post={post}/>
+      
     </div>
   );
 }

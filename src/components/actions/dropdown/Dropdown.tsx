@@ -61,7 +61,7 @@ function DropdownMenu({ children }: { children: ReactNode }) {
               e.preventDefault(); // remove outline on close
             }}
             align="center"
-            className="animate-fade animate-duration-200 border-skin-base bg-skin-base z-50 mb-2 mt-2 max-h-44 min-w-fit overflow-y-auto rounded-xl border p-1 shadow-lg"
+            className="animate-fade animate-duration-200 border-skin-base bg-[#fff] z-50 mb-2 mt-2 max-h-44 min-w-fit overflow-y-auto rounded-xl border p-1 shadow-lg"
           >
             {children}
           </RadixDropdownMenu.Content>
