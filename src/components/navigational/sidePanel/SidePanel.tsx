@@ -9,8 +9,8 @@ export default function SidePanel() {
     <menu className="hidden md:inline-flex items-center lg:items-start flex-col sticky top-6 h-full max-h-[91svh] overflow-y-hidden hover:overflow-y-auto">
       <Button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="inline mb-8 w-full p-1 rounded-2xl bg-black/25"
-        justify="start"
+        className="inline mb-8 p-2 rounded-b-2xl appTop fixed top-0 lg:px-4"
+        justify="center"
       >
         <div className="flex items-center gap-3 group">
           <Image src="/icon.png" alt="gram.blue icon" width={48} height={48}/>
@@ -24,6 +24,7 @@ export default function SidePanel() {
           />
         </div>
       </Button>
+      <div className="mt-14"/>
       <Navbar />
     </menu>
   );
