@@ -34,7 +34,7 @@ export default function PostEmbedPlaceholder(props: Props) {
       return <>RecordEmbed</>;
     } else if (AppBskyEmbedRecordWithMedia.isView(content)) {
       return (
-        <>RecordEmbed</>
+        <canvas width={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>
       );
     } else if (AppBskyEmbedVideo.isView(content)) {
       return (
