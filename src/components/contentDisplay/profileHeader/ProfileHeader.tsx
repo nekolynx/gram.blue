@@ -22,6 +22,7 @@ import { isInvalidHandle } from "@/lib/utils/text";
 import KnownFollowers from "@/components/dataDisplay/knownFollowers/KnownFollowers";
 import JoinedDate from "@/components/dataDisplay/joinedDate/JoinedDate";
 import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
+import ProfileHeaderClassicSkeleton from "./ProfileHeaderClassicSkeleton";
 
 interface Props {
   handle: string;
@@ -54,12 +55,20 @@ export default function ProfileHeader(props: Props) {
     return (
       <>
         {(isLoading || (isFetching && !isRefetching)) && (
-          <LoadingSpinner /> //TODO: Skeleton for ProfileHeader Classic
+          <ProfileHeaderClassicSkeleton />
         )}
         {profile && contentFilter && (
           <section className="overflow-hidden md:rounded-t-2xl">
-            <header className="flex justify-between">
-              <div className="p-4 pr-0">
+            <header className="flex justify-between relative">
+              {!isBlocked || !hasBlockedYou ? (
+                <div className="absolute top-0 left-0 right-0 h-40 object-cover md:h-48 animate-fade" 
+                  style={{
+                    backgroundImage: `linear-gradient(165deg, rgba(var(--color-background-secondary),0.85) 5% , rgb(var(--color-background-secondary)) 50%), url(${profile?.banner})`, 
+                    backgroundSize: "contain"
+                  }}>
+                </div>
+              ) : <></> }
+              <div className="p-4 pr-0 relative">
                 {isBlocked || hasBlockedYou ? (
                   <Image
                     src={profile?.avatar ?? FallbackAvatar}
@@ -91,7 +100,7 @@ export default function ProfileHeader(props: Props) {
                   </Button>
                 )}
               </div>
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col items-end relative">
                 {profile?.handle && (
                   <UserStats
                     handle={profile?.handle}
@@ -123,7 +132,7 @@ export default function ProfileHeader(props: Props) {
                 )}
               </div>
             </header>
-            <div className="mx-3 mb-3 mt-1">
+            <div className="mx-3 mb-3 mt-1 relative">
               <div className="flex flex-wrap items-center gap-x-2">
                 <h1 className="text-skin-base break-all text-xl font-semibold">
                   {profile.displayName || profile.handle}
