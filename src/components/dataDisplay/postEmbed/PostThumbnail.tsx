@@ -30,7 +30,7 @@ export default function PostThumbnail(props: Props) {
         let url = "";
         switch(content.media.$type){
           case "app.bsky.embed.video#view": url = ""+content.media.thumbnail; break;
-          case "app.bsky.embed.images#view": url = ""+content.media.images[0].thumb; break;
+          case "app.bsky.embed.images#view": url = ""+(content.media.images as AppBskyEmbedImages.ViewImage[])[0].thumb; break;
         }
         return <div style={{backgroundImage: `url(${url})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center"/>
        }
