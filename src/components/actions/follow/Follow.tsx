@@ -37,14 +37,14 @@ export default function Follow(props: Props) {
           onClick={() => onToggleFollow.mutate()}
           className={className + ` rounded-full px-4 py-2 text-sm font-medium ${
             isFollowing
-              ? "text-skin-base bg-skin-tertiary hover:brightness-95"
-              : "bg-lime-500 hover:brightness-95 text-skin-inverted"
+              ? "bg-[#67bc2b] text-skin-inverted hover:brightness-95"
+              : "border-2 border-primary text-primary hover:brightness-95 "
           }`}
         >
           {isFollowing ? (
-            <BiCheck className="text-skin-icon-base text-xl" />
+            <BiCheck className="text-skin-inverted text-xl" />
           ) : (
-            <BiPlus className="text-skin-inverted text-lg" />
+            <BiPlus className="text-primary text-lg" />
           )}
           {isFollowing ? "Following" : "Follow"}
         </Button>

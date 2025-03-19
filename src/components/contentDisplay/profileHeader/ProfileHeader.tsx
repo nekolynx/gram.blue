@@ -21,6 +21,7 @@ import EditProfile from "@/components/actions/editProfile/EditProfile";
 import { isInvalidHandle } from "@/lib/utils/text";
 import KnownFollowers from "@/components/dataDisplay/knownFollowers/KnownFollowers";
 import JoinedDate from "@/components/dataDisplay/joinedDate/JoinedDate";
+import LoadingSpinner from "@/components/status/loadingSpinner/LoadingSpinner";
 
 interface Props {
   handle: string;
@@ -53,7 +54,7 @@ export default function ProfileHeader(props: Props) {
     return (
       <>
         {(isLoading || (isFetching && !isRefetching)) && (
-          <></>
+          <LoadingSpinner /> //TODO: Skeleton for ProfileHeader Classic
         )}
         {profile && contentFilter && (
           <section className="overflow-hidden md:rounded-t-2xl">

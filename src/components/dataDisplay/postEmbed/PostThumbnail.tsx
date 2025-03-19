@@ -20,10 +20,10 @@ export default function PostThumbnail(props: Props) {
 
   const getEmbed = (content: AppBskyFeedDefs.FeedViewPost["post"]["embed"]) => {
     if (AppBskyEmbedImages.isView(content)) {
-        return <div style={{backgroundImage: `url(${content.images[0].thumb})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center"/>
+        return <div style={{backgroundImage: `url(${content.images[0].thumb})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center bg-skin-tertiary"/>
     }
     else if(AppBskyEmbedVideo.isView(content)) {
-        return <div style={{backgroundImage: `url(${content.thumbnail})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center"/>
+        return <div style={{backgroundImage: `url(${content.thumbnail})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-cente bg-skin-tertiary"/>
     }
     else if(AppBskyEmbedRecordWithMedia.isView(content)) {
        if(content.media != null){
@@ -32,7 +32,7 @@ export default function PostThumbnail(props: Props) {
           case "app.bsky.embed.video#view": url = ""+content.media.thumbnail; break;
           case "app.bsky.embed.images#view": url = ""+(content.media.images as AppBskyEmbedImages.ViewImage[])[0].thumb; break;
         }
-        return <div style={{backgroundImage: `url(${url})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center"/>
+        return <div style={{backgroundImage: `url(${url})`,height: "33vw", maxHeight: "12rem", filter: `${blur ? "blur(20px)" : "none"}`}} className="w-full bg-cover bg-center bg-skin-tertiary"/>
        }
     }
   };

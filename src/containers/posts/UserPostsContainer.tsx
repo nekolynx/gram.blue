@@ -102,7 +102,8 @@ export default function UserPostsConatiner(props: Props) {
       {!isBlocked &&
         !hasBlockedYou &&
         isFetchingUserPosts &&
-        !isFetchingUserPostsNextPage && <FeedPostSkeleton />}
+        !isFetchingUserPostsNextPage &&
+        mode !== "media" && <FeedPostSkeleton />}
       {!isBlocked && !hasBlockedYou && userPostsError && (
         <FeedAlert variant="badResponse" message="Something went wrong" />
       )}

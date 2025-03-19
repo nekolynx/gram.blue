@@ -89,20 +89,20 @@ export default function FeedPostMedia(props: Props) {
       className="media hover:cursor-pointer"
     >
       {reason && <Reason reason={reason} />}
-      <div className="relative">
+      <div className="relative overflow-hidden">
           
           {post.post.embed && (
             <>
                 <PostThumbnail content={post.post.embed} depth={0} blur={hidden} /> 
             </>
           )}
-          {showToggle && (
+          {showToggle && hidden && (
               <PostHider
                 message={message}
                 hidden={hidden}
                 onToggleVisibility={setHidden}
                 showToggle={shouldHide}
-                className="absolute top-0 text-xs"
+                className="absolute top-0 bottom-0 py-8 text-xs bg-[#fff6] flex-col"
               />
           )}
       </div>
