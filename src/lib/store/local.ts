@@ -9,6 +9,6 @@ export const THEMES: Theme[] = [
 ];
 
 export const PROFILEMODE: ProfileMode[] = [
-  { label: "BlueSky", value: "bluesky"},
   { label: "Classic", value: "gramblue"},
+  { label: "BlueSky", value: "bluesky"},
 ];

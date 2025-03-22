@@ -74,6 +74,7 @@ export default function UserPostsConatiner(props: Props) {
           contentFilter &&
           userPostsData?.pages.map((page, i) => (
             <>
+              <span key={i} className="hidden"/>
               {mode === "posts" &&
                 page.data.feed
                   .filter((post) => !post.reply)

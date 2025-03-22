@@ -51,30 +51,51 @@ export default function ProfileHeader(props: Props) {
     contentFilter?.contentFilters.find((item) => item.type === "impersonation")
       ?.visibility === "warn";
 
-  if(localStorage.getItem("profileMode")==="gramblue") {
+  if(localStorage.getItem("profileMode")==="bluesky") {
     return (
       <>
         {(isLoading || (isFetching && !isRefetching)) && (
-          <ProfileHeaderClassicSkeleton />
+          <ProfileHeaderSkeleton />
         )}
         {profile && contentFilter && (
-          <section className="overflow-hidden md:rounded-t-2xl">
-            <header className="flex justify-between relative">
-              {!isBlocked || !hasBlockedYou ? (
-                <div className="absolute top-0 left-0 right-0 h-40 object-cover md:h-48 animate-fade" 
-                  style={{
-                    backgroundImage: `linear-gradient(165deg, rgba(var(--color-background-secondary),0.85) 5% , rgb(var(--color-background-secondary)) 50%), url(${profile?.banner})`, 
-                    backgroundSize: "contain"
-                  }}>
-                </div>
-              ) : <></> }
-              <div className="p-4 pr-0 relative">
+          <section className="border-skin-base overflow-hidden border-0 md:border-y border-b md:rounded-t-2xl md:border-x">
+            <div className="relative bg-[#ddd]">
+              {isBlocked || hasBlockedYou ? (
+                <Image
+                  src={profile?.banner ?? FallbackBanner}
+                  alt="Banner"
+                  width={800}
+                  height={192}
+                  priority
+                  className="h-40 object-cover opacity-30 contrast-75 md:h-48"
+                />
+              ) : (
+                <Button
+                  onClick={() => setShowBanner(true)}
+                  className={`${
+                    profile.banner
+                      ? "cursor-pointer hover:brightness-90"
+                      : "cursor-default"
+                  }`}
+                >
+                  <Image
+                    src={profile?.banner ?? FallbackBanner}
+                    alt="Banner"
+                    width={800}
+                    height={192}
+                    priority
+                    className="h-40 object-cover md:h-48"
+                  />
+                </Button>
+              )}
+
+              <div className="absolute bottom-0 translate-y-1/2 transform px-3">
                 {isBlocked || hasBlockedYou ? (
                   <Image
                     src={profile?.avatar ?? FallbackAvatar}
                     alt="Avatar"
-                    width={75}
-                    height={75}
+                    width={95}
+                    height={95}
                     className="bg-skin-base rounded-full border-4 border-transparent object-cover opacity-30 contrast-75"
                   />
                 ) : (
@@ -88,11 +109,11 @@ export default function ProfileHeader(props: Props) {
                         FallbackAvatar
                       }
                       alt="Avatar"
-                      width={75}
-                      height={75}
+                      width={95}
+                      height={95}
                       priority
                       className={`rounded-full object-cover ${
-                        profile?.avatar
+                        profile.avatar
                           ? "cursor-pointer hover:brightness-90"
                           : "cursor-default"
                       }`}
@@ -100,41 +121,31 @@ export default function ProfileHeader(props: Props) {
                   </Button>
                 )}
               </div>
-              <div className="flex flex-col items-end relative">
-                {profile?.handle && (
-                  <UserStats
-                    handle={profile?.handle}
-                    followerCount={profile?.followersCount ?? 0}
-                    followCount={profile?.followsCount ?? 0}
-                    postsCount={profile.postsCount ?? 0}
-                    classicMode={true}
+            </div>
+            {profile?.viewer && session?.user.handle && (
+              <div className="mr-3 mt-3 flex">
+                <div className="ml-auto flex gap-2">
+                  <UserActions
+                    author={profile}
+                    viewer={profile.viewer}
+                    viewerHandle={session?.user.handle}
+                    viewerDID={session?.user.id}
                   />
-                )}
-                {profile?.viewer && session?.user.handle && (
-                  <div className="w-full pr-4 flex gap-1 justify-end">
-                    {handle === session?.user.handle && (
-                      <EditProfile profile={profile} />
-                    )}
-                    <Follow
-                      onToggleFollow={toggleFollow}
-                      author={profile}
-                      viewer={profile.viewer}
-                      viewerDID={session?.user.id}
-                      className="w-full"
-                    />
-                    <UserActions
-                      author={profile}
-                      viewer={profile.viewer}
-                      viewerHandle={session?.user.handle}
-                      viewerDID={session?.user.id}
-                    />
-                  </div>
-                )}
+                  <Follow
+                    onToggleFollow={toggleFollow}
+                    author={profile}
+                    viewer={profile.viewer}
+                    viewerDID={session?.user.id}
+                  />
+                  {handle === session?.user.handle && (
+                    <EditProfile profile={profile} />
+                  )}
+                </div>
               </div>
-            </header>
-            <div className="mx-3 mb-3 mt-1 relative">
+            )}
+            <div className="mx-3 mb-3 mt-1">
               <div className="flex flex-wrap items-center gap-x-2">
-                <h1 className="text-skin-base break-all text-xl font-semibold">
+                <h1 className="text-skin-base break-all text-2xl font-semibold">
                   {profile.displayName || profile.handle}
                 </h1>
                 <div className="flex flex-wrap gap-1.5">
@@ -147,7 +158,7 @@ export default function ProfileHeader(props: Props) {
                 <ViewerInfo text="Invalid Handle" />
               ) : (
                 <h2 className="text-skin-tertiary break-all font-medium">
-                  @{profile.handle}
+                  @{profile?.handle}
                 </h2>
               )}
 
@@ -161,6 +172,16 @@ export default function ProfileHeader(props: Props) {
                 </div>
               )}
 
+              {profile?.handle && (
+                <div className="mt-2">
+                  <UserStats
+                    handle={profile?.handle}
+                    followerCount={profile?.followersCount ?? 0}
+                    followCount={profile?.followsCount ?? 0}
+                    postsCount={profile.postsCount ?? 0}
+                  />
+                </div>
+              )}
               {!isBlocked &&
                 profile?.handle &&
                 profile.viewer?.knownFollowers &&
@@ -197,13 +218,19 @@ export default function ProfileHeader(props: Props) {
               )}
             </div>
 
-            {!hasBlockedYou && <ProfileTabs classicMode={true} />}
+            {!hasBlockedYou && <ProfileTabs />}
 
             {showAvatar && profile.avatar && (
-            <Gallery
-              images={[{ src: profile.avatar }]}
-              onClose={() => setShowAvatar(false)}
-            />
+              <Gallery
+                images={[{ src: profile.avatar }]}
+                onClose={() => setShowAvatar(false)}
+              />
+            )}
+            {showBanner && profile.banner && (
+              <Gallery
+                images={[{ src: profile.banner }]}
+                onClose={() => setShowBanner(false)}
+              />
             )}
           </section>
         )}
@@ -214,47 +241,26 @@ export default function ProfileHeader(props: Props) {
   return (
     <>
       {(isLoading || (isFetching && !isRefetching)) && (
-        <ProfileHeaderSkeleton />
+        <ProfileHeaderClassicSkeleton />
       )}
       {profile && contentFilter && (
-        <section className="border-skin-base overflow-hidden border-0 md:border-y border-b md:rounded-t-2xl md:border-x">
-          <div className="relative bg-[#ddd]">
-            {isBlocked || hasBlockedYou ? (
-              <Image
-                src={profile?.banner ?? FallbackBanner}
-                alt="Banner"
-                width={800}
-                height={192}
-                priority
-                className="h-40 object-cover opacity-30 contrast-75 md:h-48"
-              />
-            ) : (
-              <Button
-                onClick={() => setShowBanner(true)}
-                className={`${
-                  profile.banner
-                    ? "cursor-pointer hover:brightness-90"
-                    : "cursor-default"
-                }`}
-              >
-                <Image
-                  src={profile?.banner ?? FallbackBanner}
-                  alt="Banner"
-                  width={800}
-                  height={192}
-                  priority
-                  className="h-40 object-cover md:h-48"
-                />
-              </Button>
-            )}
-
-            <div className="absolute bottom-0 translate-y-1/2 transform px-3">
+        <section className="overflow-hidden md:rounded-t-2xl">
+          <header className="flex justify-between relative">
+            {!isBlocked || !hasBlockedYou ? (
+              <div className="absolute top-0 left-0 right-0 h-40 object-cover md:h-48 animate-fade" 
+                style={{
+                  backgroundImage: `linear-gradient(165deg, rgba(var(--color-background-secondary),0.85) 5% , rgb(var(--color-background-secondary)) 50%), url(${profile?.banner})`, 
+                  backgroundSize: "contain"
+                }}>
+              </div>
+            ) : <></> }
+            <div className="p-4 pr-0 relative">
               {isBlocked || hasBlockedYou ? (
                 <Image
                   src={profile?.avatar ?? FallbackAvatar}
                   alt="Avatar"
-                  width={95}
-                  height={95}
+                  width={75}
+                  height={75}
                   className="bg-skin-base rounded-full border-4 border-transparent object-cover opacity-30 contrast-75"
                 />
               ) : (
@@ -268,11 +274,11 @@ export default function ProfileHeader(props: Props) {
                       FallbackAvatar
                     }
                     alt="Avatar"
-                    width={95}
-                    height={95}
+                    width={75}
+                    height={75}
                     priority
                     className={`rounded-full object-cover ${
-                      profile.avatar
+                      profile?.avatar
                         ? "cursor-pointer hover:brightness-90"
                         : "cursor-default"
                     }`}
@@ -280,31 +286,41 @@ export default function ProfileHeader(props: Props) {
                 </Button>
               )}
             </div>
-          </div>
-          {profile?.viewer && session?.user.handle && (
-            <div className="mr-3 mt-3 flex">
-              <div className="ml-auto flex gap-2">
-                <UserActions
-                  author={profile}
-                  viewer={profile.viewer}
-                  viewerHandle={session?.user.handle}
-                  viewerDID={session?.user.id}
+            <div className="flex flex-col items-end relative">
+              {profile?.handle && (
+                <UserStats
+                  handle={profile?.handle}
+                  followerCount={profile?.followersCount ?? 0}
+                  followCount={profile?.followsCount ?? 0}
+                  postsCount={profile.postsCount ?? 0}
+                  classicMode={true}
                 />
-                <Follow
-                  onToggleFollow={toggleFollow}
-                  author={profile}
-                  viewer={profile.viewer}
-                  viewerDID={session?.user.id}
-                />
-                {handle === session?.user.handle && (
-                  <EditProfile profile={profile} />
-                )}
-              </div>
+              )}
+              {profile?.viewer && session?.user.handle && (
+                <div className="w-full pr-4 flex gap-1 justify-end">
+                  {handle === session?.user.handle && (
+                    <EditProfile profile={profile} />
+                  )}
+                  <Follow
+                    onToggleFollow={toggleFollow}
+                    author={profile}
+                    viewer={profile.viewer}
+                    viewerDID={session?.user.id}
+                    className="w-full"
+                  />
+                  <UserActions
+                    author={profile}
+                    viewer={profile.viewer}
+                    viewerHandle={session?.user.handle}
+                    viewerDID={session?.user.id}
+                  />
+                </div>
+              )}
             </div>
-          )}
-          <div className="mx-3 mb-3 mt-1">
+          </header>
+          <div className="mx-3 mb-3 mt-1 relative">
             <div className="flex flex-wrap items-center gap-x-2">
-              <h1 className="text-skin-base break-all text-2xl font-semibold">
+              <h1 className="text-skin-base break-all text-xl font-semibold">
                 {profile.displayName || profile.handle}
               </h1>
               <div className="flex flex-wrap gap-1.5">
@@ -317,7 +333,7 @@ export default function ProfileHeader(props: Props) {
               <ViewerInfo text="Invalid Handle" />
             ) : (
               <h2 className="text-skin-tertiary break-all font-medium">
-                @{profile?.handle}
+                @{profile.handle}
               </h2>
             )}
 
@@ -331,16 +347,6 @@ export default function ProfileHeader(props: Props) {
               </div>
             )}
 
-            {profile?.handle && (
-              <div className="mt-2">
-                <UserStats
-                  handle={profile?.handle}
-                  followerCount={profile?.followersCount ?? 0}
-                  followCount={profile?.followsCount ?? 0}
-                  postsCount={profile.postsCount ?? 0}
-                />
-              </div>
-            )}
             {!isBlocked &&
               profile?.handle &&
               profile.viewer?.knownFollowers &&
@@ -377,22 +383,17 @@ export default function ProfileHeader(props: Props) {
             )}
           </div>
 
-          {!hasBlockedYou && <ProfileTabs />}
+          {!hasBlockedYou && <ProfileTabs classicMode={true} />}
 
           {showAvatar && profile.avatar && (
-            <Gallery
-              images={[{ src: profile.avatar }]}
-              onClose={() => setShowAvatar(false)}
-            />
-          )}
-          {showBanner && profile.banner && (
-            <Gallery
-              images={[{ src: profile.banner }]}
-              onClose={() => setShowBanner(false)}
-            />
+          <Gallery
+            images={[{ src: profile.avatar }]}
+            onClose={() => setShowAvatar(false)}
+          />
           )}
         </section>
       )}
     </>
+    
   );
 }
