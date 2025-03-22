@@ -29,7 +29,7 @@ export default function Reason(props: Props) {
         >
           <div className="px-3 py-1.5 mb-1 bg-skin-inverted text-skin-inverted hover:bg-primary inline-flex flex-wrap items-center gap-1 text-lg font-semibold ">
             <BiRepost />
-            <small className="leading-[0.75]">{reason.by.displayName || reason.by.handle} reposted</small>
+            <small className="leading-[0.75] text-xs">{reason.by.displayName || reason.by.handle} reposted</small>
           </div>
         </Link>
       )}

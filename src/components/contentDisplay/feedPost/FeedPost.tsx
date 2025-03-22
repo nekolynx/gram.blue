@@ -148,7 +148,7 @@ export default function FeedPost(props: Props) {
           )}`,
         );
       */}}
-      className={`py-3 ${isParent ? " " : "mb-4"}`}
+      className={`py-3 ${isParent ? " " : "mb-5"}`}
     >
       {reason && <Reason reason={reason} />}
 
