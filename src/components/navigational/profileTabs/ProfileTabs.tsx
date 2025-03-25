@@ -21,7 +21,7 @@ export default function ProfileTabs(props: Props) {
   if(classicMode) {
     return (
       <div className="overflow-x-hidden hover:overflow-x-auto w-full justify-between border border-x-0">
-        <Tabs>
+        <Tabs className="justify-around">
           <TabItem
             label={<RiLayoutGridLine className={iconClass} />}
             path={`${basePath}/media`}
