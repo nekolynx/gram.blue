@@ -22,13 +22,13 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
     >
       <article className="flex flex-col gap-2">
         <div className="flex flex-wrap justify-between gap-3">
-          <div className="flex flex-wrap items-start gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Avatar
               src={profile.avatar?.replace("avatar", "avatar_thumbnail")}
             />
             <div className="flex flex-col">
-              <div className="flex flex-wrap gap-x-1.5">
-                <h2 className="text-skin-base font-semibold">
+              <div className="flex flex-wrap gap-x-1.5 items-center">
+                <h2 className="text-skin-base font-semibold leading-[1.1]">
                   {profile.displayName || profile.handle}
                 </h2>
                 {profile.viewer?.followedBy && (
@@ -43,7 +43,7 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
               {isInvalidHandle(profile?.handle) ? (
                 <ViewerInfo text="Invalid Handle" />
               ) : (
-                <h3 className="text-skin-tertiary break-all font-medium">
+                <h3 className="text-skin-tertiary break-all font-medium leading-[1.1]">
                   @{profile?.handle}
                 </h3>
               )}
@@ -52,8 +52,8 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
         </div>
         <div>
           {profile.description && (
-            <p className="text-skin-base break-words leading-5">
-              {profile.description}
+            <p className="text-skin-base break-words leading-5 ml-[45px] text-sm font-medium">
+              {profile.description.split('\n').map(str => <p>{str}</p>)}
             </p>
           )}
         </div>
