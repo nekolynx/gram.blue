@@ -53,7 +53,7 @@ const ProfileCard = memo(function ProfileCard(props: Props) {
         <div>
           {profile.description && (
             <p className="text-skin-base break-words leading-5 ml-[45px] text-sm font-medium">
-              {profile.description.split('\n').map(str => <p>{str}</p>)}
+              {profile.description.split('\n').map((str,i) => <p key={i}>{str}</p>)}
             </p>
           )}
         </div>
