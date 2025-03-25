@@ -11,7 +11,7 @@ export default function SessionError(props: Props) {
   const { message } = props;
 
   return (
-    <div className="m-auto max-w-[20rem] shadow-xl shadow-status-danger/15 text-status-danger bg-skin-base flex flex-col items-center rounded-2xl px-7 py-8 font-medium text-center">
+    <div className="m-auto my-10 max-w-[20rem] shadow-xl shadow-status-danger/15 text-status-danger bg-skin-base flex flex-col items-center rounded-2xl px-7 py-8 font-medium text-center">
         <TbPlugConnectedX size={"2rem"}/>
         <PiSmileyXEyes size={"3rem"}/>
         <strong className="text-lg mb-0 mt-3 text-skin-base">Session Error</strong>
