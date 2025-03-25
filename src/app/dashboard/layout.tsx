@@ -25,7 +25,7 @@ export default async function DashboardLayout({
   return (
     <>{session === null && <SessionError message="Something went wrong. You'll need to re-login." />}
     <AgentProvider session={session}>
-      <main className="bg-skin-base flex justify-center gap-6 pb-20 md:mt-6 lg:gap-16 animate-fade">
+      <main className="bg-skin-base flex justify-center gap-6 pb-20 md:mt-6 lg:gap-16">
         {profile && <Composer author={profile} />}
         <SidePanel />
         <section className="w-full md:max-w-xl">
