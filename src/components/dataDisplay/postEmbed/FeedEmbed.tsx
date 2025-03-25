@@ -13,7 +13,7 @@ export default function FeedEmbed(props: Props) {
   const { feed, depth } = props;
 
   return (
-    <>
+    <div className="p-6 border border-x-0 quoted-with-the-sauce">
       {depth < 2 && (
         <Link
           href={{
@@ -57,6 +57,6 @@ export default function FeedEmbed(props: Props) {
           </small>
         </Link>
       )}
-    </>
+    </div>
   );
 }
