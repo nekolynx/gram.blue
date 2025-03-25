@@ -50,6 +50,8 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       </head>
       <body className={inter.className}>
+        <button>Test</button>
+        {session == null && <button>Test2</button>}
         <ThemeProvider>
           <SessionProvider session={session}>
             <ScrollProvider>
