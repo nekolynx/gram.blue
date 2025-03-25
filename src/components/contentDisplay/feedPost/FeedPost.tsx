@@ -213,7 +213,7 @@ export default function FeedPost(props: Props) {
             <PostEmbedPlaceholder content={post.post.embed} depth={0} />
           }
           {post.post.embed == null && (
-              <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[35vh] p-[3rem] quoted-with-the-sauce">
+              <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[80svw] md:min-h-[28.8rem] p-[3rem] quoted-with-the-sauce">
                 <span className="absolute text-xl top-3 left-3 opacity-25">&ldquo;</span>
                 <PostText record={post.post.record} />
                 <div className="font-semibold text-primary mt-3">&mdash;{author.displayName}</div>

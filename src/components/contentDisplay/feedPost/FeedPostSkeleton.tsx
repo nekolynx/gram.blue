@@ -30,7 +30,7 @@ export function Skeleton() {
         </div>
         <div className="bg-[#ddd] h-5 w-[30px] rounded" />
       </div>
-      <div className="bg-[#ddd] w-full h-[35vh]"/>
+      <div className="bg-[#ddd] w-full min-h-[80svw] md:min-h-[28.8rem] h-full"/>
       <div className="py-3 mx-3 border border-t-0 border-x-0 border-skin-base text-[2em]">
         <div className="flex gap-2 items-center">
           <PlaceholderIcons/>

@@ -128,7 +128,7 @@ export default function ImageEmbed(props: Props) {
 
       default:
         return (
-          <div className="relative">
+          <div className="relative max-h-[125vw] md:max-h-[45rem] overflow-clip">
             {images[0] && (
               <>
                 <Image
@@ -137,7 +137,7 @@ export default function ImageEmbed(props: Props) {
                   width={images[0].aspectRatio?.width ?? 900}
                   height={images[0].aspectRatio?.height ?? 900}
                   priority
-                  className="max-h-97 w-full object-cover cursor-pointer border border-x-0 border-skin-base"
+                  className="max-h-97 w-full object-cover cursor-pointer border border-x-0 border-skin-base h-100"
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImage(0);
