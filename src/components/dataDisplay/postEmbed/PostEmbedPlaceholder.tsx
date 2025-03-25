@@ -8,6 +8,7 @@ import {
   AppBskyEmbedVideo,
 } from "@atproto/api";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
+import CensoredEmbed from "./CensoredEmbed";
 
 interface Props {
   content: AppBskyFeedDefs.FeedViewPost["post"]["embed"];
@@ -20,7 +21,7 @@ export default function PostEmbedPlaceholder(props: Props) {
   const getEmbed = (content: AppBskyFeedDefs.FeedViewPost["post"]["embed"]) => {
     if (AppBskyEmbedImages.isView(content)) {
       return ( 
-        <canvas width={content.images[0].aspectRatio?.width} height={content.images[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>
+        <CensoredEmbed width={content.images[0].aspectRatio?.width} height={content.images[0].aspectRatio?.height}/>
     );
     } else if (AppBskyGraphDefs.isStarterPackViewBasic(content?.record)) {
       return <>StarterPack</>;
@@ -33,11 +34,11 @@ export default function PostEmbedPlaceholder(props: Props) {
     } else if (AppBskyEmbedRecord.isView(content)) {
       return <>RecordEmbed</>;
     } else if (AppBskyEmbedRecordWithMedia.isView(content)) {
-      if(content?.media.images) {return (<canvas width={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>);}
-      else {return (<canvas width={(content.media.thumbnail as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.thumbnail as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>);}
+      if(content?.media.images) {return (<CensoredEmbed width={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} />);}
+      else if(content?.media.thumbnail) {return (<CensoredEmbed width={(content.media.thumbnail as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.thumbnail as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} />);}
     } else if (AppBskyEmbedVideo.isView(content)) {
       return (
-        <canvas width={content.aspectRatio?.width} height={content.aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>
+        <CensoredEmbed width={content.aspectRatio?.width} height={content.aspectRatio?.height} />
       );
     }
   };
