@@ -33,9 +33,8 @@ export default function PostEmbedPlaceholder(props: Props) {
     } else if (AppBskyEmbedRecord.isView(content)) {
       return <>RecordEmbed</>;
     } else if (AppBskyEmbedRecordWithMedia.isView(content)) {
-      return (
-        <canvas width={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>
-      );
+      if(content?.media.images) {return (<canvas width={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.images as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>);}
+      else {return (<canvas width={(content.media.thumbnail as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.width} height={(content.media.thumbnail as AppBskyEmbedImages.ViewImage[])[0].aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>);}
     } else if (AppBskyEmbedVideo.isView(content)) {
       return (
         <canvas width={content.aspectRatio?.width} height={content.aspectRatio?.height} className="w-full border border-x-0 bg-[#ddd]"/>
