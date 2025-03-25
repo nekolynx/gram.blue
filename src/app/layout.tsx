@@ -10,6 +10,7 @@ import ToastProvider from "./providers/toast";
 import { ScrollProvider } from "./providers/scroll";
 import { getSessionFromServer } from "@/lib/api/auth/session";
 import ThemeProvider from "./providers/theme";
+import SessionError from "@/components/feedback/sessionError/SessionError";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,8 +51,7 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       </head>
       <body className={inter.className}>
-        <button>Test</button>
-        {session == null && <button>Test2</button>}
+        {session == null && <SessionError message="Something went wrong. You'll need to re-login." />}
         <ThemeProvider>
           <SessionProvider session={session}>
             <ScrollProvider>
