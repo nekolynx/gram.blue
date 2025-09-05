@@ -104,7 +104,7 @@ export default function FeedPost(props: Props) {
         />
       </ProfileHoverCard>
       <Link
-        href={`/dashboard/user/${author.handle}`}
+        href={`/dashboard/user/${author.handle}/media`}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -157,7 +157,7 @@ export default function FeedPost(props: Props) {
           <div
             onClick={(e) => {
               e.stopPropagation();
-              router.push(`/dashboard/user/${author.handle}`);
+              router.push(`/dashboard/user/${author.handle}/media`);
             }}
             className="z-20 shrink-0 hover:brightness-90 relative"
           >
@@ -171,7 +171,7 @@ export default function FeedPost(props: Props) {
           </div>
           <div className="flex items-center w-full">
             <Link
-              href={`/dashboard/user/${author.handle}`}
+              href={`/dashboard/user/${author.handle}/media`}
               onClick={(e) => {
                 e.stopPropagation();
               }}
@@ -226,7 +226,7 @@ export default function FeedPost(props: Props) {
           {post.post.embed != null && (
             <div className="px-5 py-0.5 ml-3 relative">
               <RiChat1Fill className="absolute top-[5pt] left-0 text-[11pt] text-skin-tertiary"/>
-              <Link href={`/dashboard/user/${author.handle}`}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;
+              <Link href={`/dashboard/user/${author.handle}/media`}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;
               <PostText record={post.post.record} />
             </div>
           )}
