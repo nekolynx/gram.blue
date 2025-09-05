@@ -16,7 +16,7 @@ export default function TopBar(props: Props) {
   const { profile } = props;
 
   return (
-    <div className="appTop bg-primary border-primary sticky top-0 z-[60] flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden max-h-[54px]">
+    <div className="appTop bg-primary border-primary fixed top-0 z-[60] flex items-center justify-between border-b px-3 py-2.5 transition-all ease-linear md:hidden max-h-[54px]">
       <Link
         href={`/dashboard/user/${profile?.handle}`}
         className="hover:brightness-90 invisible"

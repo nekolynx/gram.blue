@@ -37,7 +37,7 @@ export default function ThreadPost(props: Props) {
 
   return (
     <article ref={threadPostRef}>
-      <div className="relative flex items-start gap-3">
+      <div className="relative flex items-start gap-3 px-3">
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -84,23 +84,25 @@ export default function ThreadPost(props: Props) {
         )}
         {!hidden && post.embed ? <PostEmbed content={post.embed} depth={0} /> : <PostEmbedPlaceholder content={post.embed} depth={0} />}
         {post.embed == null && (
-            <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[28.8rem] p-[3rem] quoted-with-the-sauce">
+            <div className="bg-skin-tertiary font-semibold border border-x-0 border-skin-base relative flex flex-col justify-center min-h-[80svw] md:min-h-[28.8rem] p-[3rem] quoted-with-the-sauce">
               <span className="absolute text-xl top-3 left-3 opacity-25">&ldquo;</span>
               <PostText record={post.record} />
               <div className="font-semibold text-primary mt-3">&mdash;{author.displayName}</div>
             </div>
         )}
       </div>
-      <div className="py-3 border border-t-0 border-x-0 border-skin-base text-[2em]">
-        <PostActions post={post} mode="thread" />
+      <div className="px-3">
+        <div className="py-3 border border-t-0 border-x-0 border-skin-base text-[2em]">
+          <PostActions post={post} mode="thread" />
+        </div>
+        <PostActionsBy post={post} className="pt-3"/>
+        {post.embed != null && (
+          <PostText record={post.record} mode="thread" />
+        )}
+        <div className="text-sm text-skin-tertiary mt-1 font-medium">
+            {getFormattedDate(post.indexedAt)}
+        </div>
       </div>
-      <PostActionsBy post={post} className="pt-3"/>
-      <div className="text-sm text-skin-tertiary mt-1 font-medium">
-          {getFormattedDate(post.indexedAt)}
-      </div>
-      {post.embed != null && (
-        <PostText record={post.record} mode="thread" />
-      )}
     </article>
   );
 }

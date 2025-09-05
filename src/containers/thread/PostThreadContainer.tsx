@@ -125,7 +125,7 @@ export default function PostThreadContainer(props: Props) {
           <div
             className={`border-skin-base ${
               parentChain.length > 0 && "border-t"
-            } p-3 last:border-b md:border-x md:last:rounded-b-2xl`}
+            } py-3 last:border-b md:border-x md:last:rounded-b-2xl`}
           >
             <ThreadPost
               post={thread?.post as PostView}
