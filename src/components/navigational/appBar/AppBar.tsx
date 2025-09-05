@@ -40,7 +40,7 @@ export default function AppBar(props: Props) {
   });
 
   return (
-    <nav id="appBottom" className="bg-skin-inverted border-skin-secondary fixed bottom-0 z-40 flex justify-center w-full overflow-auto border-t pb-8 transition-all ease-linear md:hidden" style={{minHeight: "88px"}}>
+    <nav id="appBottom" className="bg-skin-inverted border-skin-secondary fixed bottom-0 z-40 flex justify-center w-[100vw] overflow-auto border-t pb-8 transition-all ease-linear md:hidden" style={{minHeight: "88px"}}>
       <NavItem
         href="/dashboard/home"
         icon={<IconHome className="text-2xl md:text-3xl" />}
