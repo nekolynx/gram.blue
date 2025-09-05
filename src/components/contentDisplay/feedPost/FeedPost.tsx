@@ -53,6 +53,7 @@ export default function FeedPost(props: Props) {
   const isAuthorMuted = !notFound && post.post.author?.viewer?.muted;
   const [showPost, setShowPost] = useState(!isAuthorMuted);
   const bgPattern = "";
+  const profileTab = localStorage.getItem("profileTab") != null ? localStorage.getItem("profileTab") : "media";
 
   if (notFound) {
     return (
@@ -104,7 +105,7 @@ export default function FeedPost(props: Props) {
         />
       </ProfileHoverCard>
       <Link
-        href={`/dashboard/user/${author.handle}/media`}
+        href={`/dashboard/user/${author.handle}/`+profileTab}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -157,7 +158,7 @@ export default function FeedPost(props: Props) {
           <div
             onClick={(e) => {
               e.stopPropagation();
-              router.push(`/dashboard/user/${author.handle}/media`);
+              router.push(`/dashboard/user/${author.handle}/`+profileTab);
             }}
             className="z-20 shrink-0 hover:brightness-90 relative"
           >
@@ -171,7 +172,7 @@ export default function FeedPost(props: Props) {
           </div>
           <div className="flex items-center w-full">
             <Link
-              href={`/dashboard/user/${author.handle}/media`}
+              href={`/dashboard/user/${author.handle}/`+profileTab}
               onClick={(e) => {
                 e.stopPropagation();
               }}
@@ -226,7 +227,7 @@ export default function FeedPost(props: Props) {
           {post.post.embed != null && (
             <div className="px-5 py-0.5 ml-3 relative">
               <RiChat1Fill className="absolute top-[5pt] left-0 text-[11pt] text-skin-tertiary"/>
-              <Link href={`/dashboard/user/${author.handle}/media`}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;
+              <Link href={`/dashboard/user/${author.handle}/`+profileTab}><span className="font-semibold text-primary">{author.displayName}</span></Link>&nbsp;
               <PostText record={post.post.record} />
             </div>
           )}

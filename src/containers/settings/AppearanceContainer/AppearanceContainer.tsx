@@ -1,7 +1,7 @@
 "use client";
 
 import { THEMES } from "@/lib/store/local";
-import { PROFILEMODE } from "@/lib/store/local";
+import { PROFILEMODE, PROFILETAB } from "@/lib/store/local";
 import { useTheme } from "next-themes";
 
 import { ReactNode } from "react";
@@ -34,6 +34,7 @@ export default function AppearanceContainer() {
   const defaultTheme = THEMES[0].value;
   const isDefaultTheme = theme === "system";
   const [profileMode, setProfileMode] = React.useState( localStorage.getItem("profileMode") == null ? PROFILEMODE[0].value : localStorage.getItem("profileMode") );
+  const [profileTab, setProfileTab] = React.useState( localStorage.getItem("profileTab") == null ? PROFILETAB[0].value : localStorage.getItem("profileTab") );
 
   return (
     <section className="flex flex-col gap-5">
@@ -77,6 +78,28 @@ export default function AppearanceContainer() {
             }}
           >
             {PROFILEMODE.map((item) => (
+              <ToggleGroupItem
+                key={item.value}
+                type="button"
+                value={item.value}
+                >
+                  {item.label}
+                </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </Item>
+        <Item item={"Default Profile Tab"}>
+          <ToggleGroup
+            type="single"
+            //defaultValue={localStorage.getItem("profileTab")}
+            value={profileTab?.toString()}
+            onValueChange={(value: string) => {
+              if(!value) return;
+              setProfileTab(value);
+              localStorage.setItem("profileTab",value);
+            }}
+          >
+            {PROFILETAB.map((item) => (
               <ToggleGroupItem
                 key={item.value}
                 type="button"

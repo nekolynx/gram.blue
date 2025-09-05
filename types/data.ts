@@ -51,3 +51,8 @@ interface ProfileMode {
   label: string;
   value: string;
 }
+
+interface ProfileTab {
+  label: string;
+  value: string;
+}
