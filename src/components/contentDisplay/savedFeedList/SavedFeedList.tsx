@@ -8,8 +8,8 @@ export default async function SavedFeedList() {
     <section className="flex flex-col">
       {savedFeeds &&
         savedFeeds
-          .sort((feed) => (feed.pinned ? -1 : 1))
-          .map((feed) => <SavedFeedItem key={feed.cid} feedItem={feed} />)}
+          .sort((a, b) => a.indexedAt < b.indexedAt ? 1 : -1)
+          .map((feed) => <SavedFeedItem key={feed.cid} feedItem={feed} pinned={feed.pinned}/>)}
     </section>
   );
 }

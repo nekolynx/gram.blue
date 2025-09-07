@@ -54,6 +54,7 @@ export default function FeedTabs() {
             />
             {savedFeeds &&
               savedFeeds
+                .sort((a, b) => a.indexedAt < b.indexedAt ? 1 : -1)
                 .filter((feed) => feed.pinned)
                 .map((feed) => {
                   return (

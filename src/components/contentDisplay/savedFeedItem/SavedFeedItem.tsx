@@ -7,10 +7,11 @@ import Link from "next/link";
 
 interface Props {
   feedItem: SavedFeed;
+  pinned: boolean;
 }
 
 export default function SavedFeedItem(props: Props) {
-  const { feedItem } = props;
+  const { feedItem, pinned } = props;
   const { avatar, displayName } = feedItem;
 
   return (
