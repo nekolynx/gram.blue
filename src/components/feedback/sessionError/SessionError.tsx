@@ -16,7 +16,8 @@ export default function SessionError(props: Props) {
         <PiSmileyXEyes size={"3rem"}/>
         <strong className="text-lg mb-0 mt-3 text-skin-base">Session Error</strong>
         <span className="text-skin-base">{message}</span>
-        <Link href="../login" className="hover:cursor rounded-full bg-black/25 text-white px-2 py-2 pr-4 mt-6 flex items-center shadow-md shadow-black/10 font-bold"><IoRefreshCircle size="20pt"/>&nbsp;Reload</Link>
+        <Link href="../login" className="hover:cursor rounded-full bg-black/25 text-white px-2 py-2 pr-4 mt-6 flex items-center shadow-md shadow-black/10 font-bold"><IoRefreshCircle size="20pt"/>&nbsp;Re-Login</Link>
+        <Link href="." className="hover:cursor rounded-full bg-black/25 text-white px-2 py-2 pr-4 mt-6 flex items-center shadow-md shadow-black/10 font-bold"><IoRefreshCircle size="20pt"/>&nbsp;Reload App</Link>
     </div>
   );
 }
