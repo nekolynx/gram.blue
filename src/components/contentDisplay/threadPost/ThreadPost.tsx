@@ -28,6 +28,7 @@ export default function ThreadPost(props: Props) {
   const [hidden, setHidden] = useState(shouldHide);
   const router = useRouter();
   const threadPostRef = useRef<HTMLElement | null>(null);
+  const profileTab = localStorage.getItem("profileTab") != null ? localStorage.getItem("profileTab") : "media";
 
   useEffect(() => {
     if (!threadPostRef.current) return;
@@ -41,7 +42,7 @@ export default function ThreadPost(props: Props) {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            router.push(`/dashboard/user/${author.handle}/`+localStorage.getItem("profileTab"));
+            router.push(`/dashboard/user/${author.handle}/`+profileTab);
           }}
           className="z-20 shrink-0 hover:brightness-90"
         >
@@ -55,7 +56,7 @@ export default function ThreadPost(props: Props) {
         <div className="flex grow flex-col">
           <div className="flex flex-col">
             <Link
-              href={`/dashboard/user/${author.handle}/`+localStorage.getItem("profileTab")}
+              href={`/dashboard/user/${author.handle}/`+profileTab}
               onClick={(e) => {
                 e.stopPropagation();
               }}

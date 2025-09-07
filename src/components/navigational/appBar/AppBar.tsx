@@ -26,6 +26,7 @@ export default function AppBar(props: Props) {
   const {handle} = props;
   const pathname = usePathname();
   const agent = useAgent();
+  const profileTab = localStorage.getItem("profileTab") != null ? localStorage.getItem("profileTab") : "media";
 
   const {
     data: notificationsCount,
@@ -74,7 +75,7 @@ export default function AppBar(props: Props) {
         fullWidth={true}
       />
       <NavItem
-        href={`/dashboard/user/${handle}`}
+        href={`/dashboard/user/${handle}/`+profileTab}
         icon={<IconUser className="text-2xl md:text-3xl" />}
         activeIcon={<IconUser className="text-2xl md:text-3xl" />}
         title="Profile"
