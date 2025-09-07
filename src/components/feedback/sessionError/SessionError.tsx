@@ -10,13 +10,6 @@ interface Props{
 export default function SessionError(props: Props) {
   const { message } = props;
 
-  if(message)
-  {
-    window.location.reload();
-    return null;
-  }
-  
-
   return (
     <div className="m-auto my-10 max-w-[20rem] shadow-xl shadow-status-danger/15 text-status-danger bg-skin-base flex flex-col items-center rounded-2xl px-7 py-8 font-medium text-center">
         <TbPlugConnectedX size={"2rem"}/>
