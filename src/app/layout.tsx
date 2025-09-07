@@ -47,8 +47,9 @@ export default async function RootLayout({
       <head>
         {/* for making the page fullscreen on iOS when added to home */}
         <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <link rel="apple-touch-startup-image" href="/images/launch.png" />
+        <link rel="apple-touch-startup-image" href="/images/launch.png" media="screen and (orientation: portrait)" />
         <link rel="apple-touch-startup-image" href="/images/launch-(640x1136).png" media="(device-width: 640px) and (device-height: 1136px)"/>
         <link rel="apple-touch-startup-image" href="/images/launch-(750x1334).png" media="(device-width: 750px) and (device-height: 1334px)"/>
         <link rel="apple-touch-startup-image" href="/images/launch-(828x1792).png" media="(device-width: 828px) and (device-height: 1792px)"/>
