@@ -88,7 +88,7 @@ export default function FeedPostReply(props: Props) {
                 className="float-left mr-2"
                 />
             </ProfileHoverCard>
-            <div className="flex">
+            <div className="flex flex-wrap">
                 <span className="text-skin-base hover:text-skin-secondary line-clamp-1 max-w-[90%] shrink-0 overflow-ellipsis break-all font-semibold">
                     <Link
                         href={`/dashboard/user/${author.handle}`}

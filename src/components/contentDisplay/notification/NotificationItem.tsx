@@ -37,7 +37,7 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
       >
         <div className="flex gap-2">
           {getNotificationIcon(reason)}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 w-full">
             <div className="flex items-center gap-1">
               {allAuthors && allAuthors.length > 0 && (
                 <>
@@ -66,7 +66,7 @@ const NotificationItem = memo(function NotificationItem(props: Props) {
               )}
             </div>
             <div className="flex flex-wrap gap-1">
-              <div>
+              <div className="w-full">
                 {allAuthors && allAuthors.length > 1 && (
                   <>
                     <Link
