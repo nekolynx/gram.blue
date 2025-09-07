@@ -11,6 +11,8 @@ export default function Dashboard() {
   useEffect(() => {
     if (status === "authenticated" && session?.user.bskySession) {
       router.push("/dashboard/home");
+    } else {
+      router.push("/login/")
     }
   }, [router, status, session?.user.bskySession]);
 
