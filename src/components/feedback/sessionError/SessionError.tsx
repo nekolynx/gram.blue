@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { TbPlugConnectedX } from "react-icons/tb";
 import { IoRefreshCircle } from "react-icons/io5";
