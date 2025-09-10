@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import { TbPlugConnectedX } from "react-icons/tb";
 import { IoRefreshCircle } from "react-icons/io5";
@@ -7,10 +8,18 @@ import { PiSmileyXEyes } from "react-icons/pi";
 
 interface Props{
     message: string;
+    session: any|null;
 }
 
 export default function SessionError(props: Props) {
-  const { message } = props;
+  const { message, session } = props;
+
+  useEffect(() => {
+    if(session!=null){
+      window.location.reload();
+    }
+
+  });
 
   const refreshPage = () => {
     window.location.reload();

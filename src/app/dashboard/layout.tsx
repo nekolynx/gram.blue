@@ -23,7 +23,7 @@ export default async function DashboardLayout({
   const profile = await getProfile(session?.user.bskySession.handle);
 
   return (
-    <>{session === null && <SessionError message="Something went wrong. You'll need to re-login." />}
+    <>{session === null && <SessionError message="Something went wrong. You'll need to re-login." session={session} />}
     <AgentProvider session={session}>
       <main className="bg-skin-base flex justify-center gap-6 pb-20 mt-14 md:mt-6 lg:gap-16">
         {profile && <Composer author={profile} />}
